@@ -4,12 +4,7 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
-export const metadata = {
-  title: "Sarkari Result 2026 – Latest Jobs",
-  icons: {
-    icon: "/favicon.ico",
-  },
-};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
