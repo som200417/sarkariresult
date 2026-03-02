@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter ,usePathname } from "next/navigation";
+
 import { useState, useEffect } from "react";
 
 export default function Navbar() {
@@ -218,11 +219,16 @@ function SearchDropdown({ loading, results }) {
    NAV ITEMS
 ===================== */
 function NavItem({ href, children }) {
+  const pathname = usePathname();
+  const isActive = pathname === href;
+
   return (
     <li>
       <Link
         href={href}
-        className="block px-4 py-3 hover:bg-blue-800 transition"
+        className={`block px-4 py-3 transition
+          ${isActive ? "bg-blue-950 text-black-300" : "hover:bg-blue-800"}
+        `}
       >
         {children}
       </Link>
@@ -230,13 +236,21 @@ function NavItem({ href, children }) {
   );
 }
 
+
+
+
 function MobileNavItem({ href, children, onClick }) {
+  const pathname = usePathname();
+  const isActive = pathname === href;
+
   return (
     <li>
       <Link
         href={href}
         onClick={onClick}
-        className="block px-4 py-3 hover:bg-blue-800 transition"
+        className={`block px-4 py-3 transition
+          ${isActive ? "bg-blue-950 text-black-300" : "hover:bg-blue-800"}
+        `}
       >
         {children}
       </Link>

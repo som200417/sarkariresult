@@ -19,7 +19,8 @@ async function getDocument(slug) {
 }
 
 export async function generateMetadata({ params }) {
-  const post = await getDocument(params.slug);
+  const { slug } = await params; 
+  const post = await getDocument(slug);
 
   if (!post) {
     return { title: "Document Not Found" };
@@ -32,7 +33,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function DocumentPage({ params }) {
-  const post = await getDocument(params.slug);
+  const { slug } = await params; 
+  const post = await getDocument(slug);
 
   if (!post) notFound();
 

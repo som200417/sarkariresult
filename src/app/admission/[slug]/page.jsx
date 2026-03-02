@@ -20,7 +20,8 @@ async function getAdmission(slug) {
 }
 
 export async function generateMetadata({ params }) {
-  const post = await getAdmission(params.slug);
+  const { slug } = await params; 
+  const post = await getAdmission(slug);
 
   if (!post) {
     return { title: "Admission Not Found" };
@@ -33,7 +34,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function AdmissionPage({ params }) {
-  const post = await getAdmission(params.slug);
+  const { slug } = await params; 
+  const post = await getAdmission(slug);
 
   if (!post) notFound();
 

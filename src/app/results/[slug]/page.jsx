@@ -18,7 +18,8 @@ async function getResult(slug) {
 }
 
 export async function generateMetadata({ params }) {
-  const post = await getResult(params.slug);
+   const { slug } = await params; 
+  const post = await getResult(slug);
 
   if (!post) {
     return { title: "Result Not Found" };
@@ -31,7 +32,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const post = await getResult(params.slug);
+   const { slug } = await params; 
+  const post = await getResult(slug);
 
   if (!post) notFound();
 

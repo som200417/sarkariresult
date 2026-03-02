@@ -19,8 +19,8 @@ async function getAnswerKey(slug) {
 }
 
 export async function generateMetadata({ params }) {
-
-  const post = await getAnswerKey(params.slug);
+const { slug } = await params;  
+  const post = await getAnswerKey(slug);
 
   if (!post) {
     return { title: "Answer Key Not Found" };
@@ -33,8 +33,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const p = await params;
-  const post = await getAnswerKey(p.slug);
+  const { slug } = await params; 
+  const post = await getAnswerKey(slug);
 
   if (!post) notFound();
 
