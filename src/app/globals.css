@@ -1,26 +1,45 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html, body {
+  width: 100%;
+  background: #f5f5f5; 
+   overflow-x: hidden;  /* sarkariresult light grey feel */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+#root {
+  max-width: 100%;
+  padding: 20px 0;       /* TOP & BOTTOM space */
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.animate-marquee {
+  animation: marquee 12s linear infinite;
 }
+/* SarkariResult style container */ 
+
+/* ONE SOURCE OF TRUTH */
+.site-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+}
+@media (min-width: 768px) {
+  .site-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+
+
