@@ -3,7 +3,7 @@ import Home from "@/ui/Home";
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
-export const metadata = {
+export const metadata = {z
   title: "Sarkari Result 2026 – Latest Jobs, Admit Card, Results",
   description:
     "Sarkari Result 2026: Latest Government Jobs, Admit Cards, Results, Answer Keys and Admissions. Fastest updates.",

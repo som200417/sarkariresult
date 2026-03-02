@@ -2,7 +2,6 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
-import { Inter } from "next/font/google";
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
