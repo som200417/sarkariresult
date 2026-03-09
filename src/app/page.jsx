@@ -1,7 +1,6 @@
 import Home from "@/ui/Home";
 
-export const dynamic = "force-dynamic";
-export const fetchCache = "force-no-store";
+export const revalidate = 60; // cache 60 seconds
 
 export const metadata = {
   title: "Sarkari Result 2026 – Latest Jobs, Admit Card, Results",
@@ -23,11 +22,12 @@ export const metadata = {
   },
 };
 
-
 async function getHomeData() {
   const res = await fetch(
     "https://api.sarkariresult6.com/wp-json/bea/v1/home",
-    { cache: "no-store" }
+    {
+      next: { revalidate: 60 },
+    }
   );
 
   if (!res.ok) {

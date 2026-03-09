@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function Search() {
+export default function SearchPage() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
 
@@ -30,61 +30,24 @@ export default function Search() {
       });
   }, [query]);
 
-  const mapRoute = (type, slug) => {
-    switch (type) {
-      case "jobs":
-        return `/latest-jobs/${slug}`;
-      case "admit_cards":
-        return `/admit-card/${slug}`;
-      case "answer_keys":
-        return `/answer-key/${slug}`;
-      case "documents":
-        return `/document/${slug}`;
-      case "admissions":
-        return `/admission/${slug}`;
-      case "results":
-        return `/results/${slug}`;
-      default:
-        return null;
-    }
-  };
-
   return (
     <div className="site-container my-8">
       <h1 className="text-2xl font-bold mb-6">
-        Search Results for:{" "}
-        <span className="text-[#6b0035]">{query}</span>
+        Search Results for: <span>{query}</span>
       </h1>
 
       {loading && <p>Searching...</p>}
 
-      {!loading && results.length === 0 && (
-        <p>No results found.</p>
-      )}
+      {!loading && results.length === 0 && <p>No results found.</p>}
 
       <ul className="space-y-4">
-        {results.map((item) => {
-          const path = mapRoute(item.subtype, item.slug);
-          if (!path) return null;
-
-          return (
-            <li
-              key={item.id}
-              className="border border-black p-4 hover:bg-gray-50"
-            >
-              <Link
-                href={path}
-                className="text-[#6b0035] font-semibold hover:underline"
-              >
-                {item.title}
-              </Link>
-
-              <div className="text-xs text-gray-500 mt-1 capitalize">
-                {item.subtype.replace("_", " ")}
-              </div>
-            </li>
-          );
-        })}
+        {results.map((item) => (
+          <li key={item.id}>
+            <Link href={`/${item.subtype}/${item.slug}`}>
+              {item.title}
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );

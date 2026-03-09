@@ -6,17 +6,17 @@ import ImportantLinksTable from "./ImportantLinksTable";
 import SimpleTable from "./SimpleTable";
 
 export default function UniversalExamSingle({ post }) {
-  const acf = post?.acf || {};
+  const acf = post?.acf ?? {};
 
-  // ===== PARSE TEXTAREAS =====
-  const importantDates = parseList(acf.important_dates);
-  const rightDetails = parseList(acf.right_column_details);
-  const ageLimit = parseList(acf.age_limit);
-  const eligibility = parseList(acf.eligibility);
-  const examPattern = parseList(acf.exam_pattern);
-  const markingScheme = parseList(acf.marking_scheme);
+  /* ===== PARSE TEXTAREAS ===== */
+  const importantDates = parseList(acf.important_dates ?? "");
+  const rightDetails = parseList(acf.right_column_details ?? "");
+  const ageLimit = parseList(acf.age_limit ?? "");
+  const eligibility = parseList(acf.eligibility ?? "");
+  const examPattern = parseList(acf.exam_pattern ?? "");
+  const markingScheme = parseList(acf.marking_scheme ?? "");
 
-  const vacancyRows = parseList(acf.vacancy_details).map(
+  const vacancyRows = parseList(acf.vacancy_details ?? "").map(
     ([label, value]) => ({
       post_name: label,
       post_count: value,
@@ -24,21 +24,25 @@ export default function UniversalExamSingle({ post }) {
   );
 
   const getTitle = (acfTitle, fallback) =>
-    acfTitle && acfTitle.trim() !== "" ? acfTitle : fallback;
+    acfTitle?.trim() ? acfTitle : fallback;
+
+  const postTitle = post?.title?.rendered ?? "";
 
   return (
     <div className="site-container my-6">
 
+      {/* SHORT INFORMATION */}
       {acf.short_information && (
-  <div className="my-4 border-l-4 border-[#6b0035] bg-gray-50 p-4">
-    <p className="text-sm leading-6">
-      <span className="font-bold text-[#6b0035]"><a href="/">Sarkariresult6.com :</a>
-        
-      </span>{" "}
-      {acf.short_information}
-    </p>
-  </div>
-)}
+        <div className="my-4 border-l-4 border-[#6b0035] bg-gray-50 p-4">
+          <p className="text-sm leading-6">
+            <span className="font-bold text-[#6b0035]">
+              <a href="/">Sarkariresult6.com :</a>
+            </span>{" "}
+            {acf.short_information}
+          </p>
+        </div>
+      )}
+
       {/* IMPORTANT DATES + RIGHT COLUMN */}
       {(importantDates.length > 0 || rightDetails.length > 0) && (
         <TwoColumnTable
@@ -69,7 +73,7 @@ export default function UniversalExamSingle({ post }) {
         <VacancyTable
           title={getTitle(
             acf.vacancy_title,
-            `${post.title.rendered} : Vacancy Details`
+            `${postTitle} : Vacancy Details`
           )}
           vacancies={vacancyRows}
         />
@@ -127,17 +131,15 @@ export default function UniversalExamSingle({ post }) {
       <ImportantLinksTable
         title={getTitle(
           acf.important_links_title,
-          `${post.title.rendered} : Important Links`
+          `${postTitle} : Important Links`
         )}
         acf={acf}
       />
-
     </div>
   );
 }
 
-
-/* ===== SIMPLE LIST TABLE (FOR MODE / HOW TO / FAQ) ===== */
+/* ===== SIMPLE LIST TABLE ===== */
 function SimpleListTable({ title, content }) {
   if (!content) return null;
 
@@ -146,7 +148,7 @@ function SimpleListTable({ title, content }) {
     .map((item) => item.trim())
     .filter(Boolean);
 
-  if (list.length === 0) return null;
+  if (!list.length) return null;
 
   return (
     <div className="my-6">

@@ -1,12 +1,11 @@
+import { Suspense } from "react";
 import Results from "@/ui/ResultList";
 
 /* =========================
    SEO (SERVER SIDE)
 ========================= */
-export async function generateMetadata({ searchParams }) {
-  // ✅ UNWRAP searchParams (IMPORTANT)
-  const params = await searchParams;
-  const page = Number(params?.page) || 1;
+export function generateMetadata({ searchParams }) {
+  const page = Number(searchParams?.page) || 1;
 
   const baseUrl = "https://sarkariresult6.com/results";
 
@@ -23,12 +22,9 @@ export async function generateMetadata({ searchParams }) {
   return {
     title,
     description,
-
     alternates: {
-      canonical:
-        page === 1 ? baseUrl : `${baseUrl}?page=${page}`,
+      canonical: page === 1 ? baseUrl : `${baseUrl}?page=${page}`,
     },
-
     robots: {
       index: true,
       follow: true,
@@ -39,6 +35,11 @@ export async function generateMetadata({ searchParams }) {
 /* =========================
    PAGE RENDER
 ========================= */
+
 export default function Page() {
-  return <Results />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Results />
+    </Suspense>
+  );
 }

@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter ,usePathname } from "next/navigation";
-
-import { useState, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { useState, useEffect, useRef } from "react";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,6 +12,7 @@ export default function Navbar() {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
+  const controllerRef = useRef(null);
 
   /* =====================
      SEARCH SUBMIT
@@ -36,18 +36,31 @@ export default function Navbar() {
       return;
     }
 
-    const timer = setTimeout(() => {
-      setLoading(true);
+    const timer = setTimeout(async () => {
+      try {
+        if (controllerRef.current) {
+          controllerRef.current.abort();
+        }
 
-      fetch(
-        `https://api.sarkariresult6.com/wp-json/wp/v2/search?search=${query}&per_page=8`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          setResults(data);
-          setLoading(false);
-        })
-        .catch(() => setLoading(false));
+        controllerRef.current = new AbortController();
+
+        setLoading(true);
+
+        const res = await fetch(
+          `https://api.sarkariresult6.com/wp-json/wp/v2/search?search=${query}&per_page=8`,
+          { signal: controllerRef.current.signal }
+        );
+
+        const data = await res.json();
+
+        setResults(data);
+      } catch (err) {
+        if (err.name !== "AbortError") {
+          console.error(err);
+        }
+      } finally {
+        setLoading(false);
+      }
     }, 400);
 
     return () => clearTimeout(timer);
@@ -55,7 +68,6 @@ export default function Navbar() {
 
   return (
     <header className="site-container rounded-md">
-
       {/* 🔴 RED HEADER */}
       <div className="bg-red-700 text-white text-center py-8 md:py-12">
         <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-wide">
@@ -68,9 +80,7 @@ export default function Navbar() {
 
       {/* 🔵 BLUE NAVBAR */}
       <div className="bg-blue-900">
-
         <div className="flex items-center justify-between px-4 py-2">
-
           {/* DESKTOP MENU */}
           <ul className="hidden lg:flex text-white text-sm lg:text-base font-semibold">
             <NavItem href="/">Home</NavItem>
@@ -85,12 +95,13 @@ export default function Navbar() {
           {/* DESKTOP SEARCH */}
           <div className="hidden lg:block relative w-64">
             <form onSubmit={handleSearch}>
-<input
-  type="text"
-  placeholder="Search..."
-  value={query}
-  onChange={(e) => setQuery(e.target.value)}
-  className="w-full px-3 py-1 text-sm rounded outline-none bg-white text-black placeholder-gray-500"/>
+              <input
+                type="text"
+                placeholder="Search..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                className="w-full px-3 py-1 text-sm rounded outline-none bg-white text-black placeholder-gray-500"
+              />
             </form>
 
             {query.length >= 2 && (
@@ -101,14 +112,14 @@ export default function Navbar() {
           {/* MOBILE CONTROLS */}
           <div className="flex items-center justify-between w-full lg:hidden">
             <button
-              onClick={() => setMenuOpen(!menuOpen)}
+              onClick={() => setMenuOpen((v) => !v)}
               className="text-white text-2xl p-2"
             >
               ☰
             </button>
 
             <button
-              onClick={() => setSearchOpen(!searchOpen)}
+              onClick={() => setSearchOpen((v) => !v)}
               className="text-white text-xl p-2"
             >
               🔍
@@ -120,12 +131,13 @@ export default function Navbar() {
         {searchOpen && (
           <div className="lg:hidden px-4 pb-3">
             <form onSubmit={handleSearch}>
-           <input
-  type="text"
-  placeholder="Search..."
-  value={query}
-  onChange={(e) => setQuery(e.target.value)}
-  className="w-full px-3 py-2 text-sm rounded outline-none bg-white text-black placeholder-gray-500"/>
+              <input
+                type="text"
+                placeholder="Search..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                className="w-full px-3 py-2 text-sm rounded outline-none bg-white text-black placeholder-gray-500"
+              />
             </form>
 
             {query.length >= 2 && (
@@ -137,13 +149,39 @@ export default function Navbar() {
         {/* MOBILE MENU */}
         {menuOpen && (
           <ul className="lg:hidden border-t border-blue-800 text-white text-sm font-semibold">
-            <MobileNavItem href="/" onClick={() => setMenuOpen(false)}>Home</MobileNavItem>
-            <MobileNavItem href="/latest-jobs" onClick={() => setMenuOpen(false)}>Latest Jobs</MobileNavItem>
-            <MobileNavItem href="/results" onClick={() => setMenuOpen(false)}>Results</MobileNavItem>
-            <MobileNavItem href="/admit-card" onClick={() => setMenuOpen(false)}>Admit Card</MobileNavItem>
-            <MobileNavItem href="/answer-key" onClick={() => setMenuOpen(false)}>Answer Key</MobileNavItem>
-            <MobileNavItem href="/document" onClick={() => setMenuOpen(false)}>Documents</MobileNavItem>
-            <MobileNavItem href="/admission" onClick={() => setMenuOpen(false)}>Admission</MobileNavItem>
+            <MobileNavItem href="/" onClick={() => setMenuOpen(false)}>
+              Home
+            </MobileNavItem>
+            <MobileNavItem
+              href="/latest-jobs"
+              onClick={() => setMenuOpen(false)}
+            >
+              Latest Jobs
+            </MobileNavItem>
+            <MobileNavItem href="/results" onClick={() => setMenuOpen(false)}>
+              Results
+            </MobileNavItem>
+            <MobileNavItem
+              href="/admit-card"
+              onClick={() => setMenuOpen(false)}
+            >
+              Admit Card
+            </MobileNavItem>
+            <MobileNavItem
+              href="/answer-key"
+              onClick={() => setMenuOpen(false)}
+            >
+              Answer Key
+            </MobileNavItem>
+            <MobileNavItem href="/document" onClick={() => setMenuOpen(false)}>
+              Documents
+            </MobileNavItem>
+            <MobileNavItem
+              href="/admission"
+              onClick={() => setMenuOpen(false)}
+            >
+              Admission
+            </MobileNavItem>
           </ul>
         )}
       </div>
@@ -155,7 +193,6 @@ export default function Navbar() {
    SEARCH DROPDOWN
 ===================== */
 function SearchDropdown({ loading, results }) {
-
   const mapRoute = (type, slug) => {
     switch (type) {
       case "jobs":
@@ -183,7 +220,6 @@ function SearchDropdown({ loading, results }) {
 
   return (
     <div className="absolute left-0 top-full mt-1 w-full bg-white border shadow-lg z-50 max-h-72 overflow-auto rounded">
-
       {loading && (
         <div className="p-2 text-sm text-gray-500">Searching...</div>
       )}
@@ -202,12 +238,8 @@ function SearchDropdown({ loading, results }) {
             href={path}
             className="block px-3 py-2 text-sm border-b hover:bg-gray-100"
           >
-            <div className="font-semibold text-gray-800">
-              {item.title}
-            </div>
-            <div className="text-xs text-gray-500">
-              {item.subtype}
-            </div>
+            <div className="font-semibold text-gray-800">{item.title}</div>
+            <div className="text-xs text-gray-500">{item.subtype}</div>
           </Link>
         );
       })}
@@ -226,18 +258,15 @@ function NavItem({ href, children }) {
     <li>
       <Link
         href={href}
-        className={`block px-4 py-3 transition
-          ${isActive ? "bg-blue-950 text-black-300" : "hover:bg-blue-800"}
-        `}
+        className={`block px-4 py-3 transition ${
+          isActive ? "bg-blue-950 text-black-300" : "hover:bg-blue-800"
+        }`}
       >
         {children}
       </Link>
     </li>
   );
 }
-
-
-
 
 function MobileNavItem({ href, children, onClick }) {
   const pathname = usePathname();
@@ -248,9 +277,9 @@ function MobileNavItem({ href, children, onClick }) {
       <Link
         href={href}
         onClick={onClick}
-        className={`block px-4 py-3 transition
-          ${isActive ? "bg-blue-950 text-black-300" : "hover:bg-blue-800"}
-        `}
+        className={`block px-4 py-3 transition ${
+          isActive ? "bg-blue-950 text-black-300" : "hover:bg-blue-800"
+        }`}
       >
         {children}
       </Link>
