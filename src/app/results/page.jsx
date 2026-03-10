@@ -1,45 +1,38 @@
-import { Suspense } from "react";
 import Results from "@/ui/ResultList";
+import ResultsPagination from "@/components/ResultsPagination";
 
-/* =========================
-   SEO (SERVER SIDE)
-========================= */
-export function generateMetadata({ searchParams }) {
-  const page = Number(searchParams?.page) || 1;
+export const revalidate = 300;
+export const dynamic = "force-static";
 
-  const baseUrl = "https://sarkariresult6.com/results";
+async function getResults(page = 1) {
 
-  const title =
-    page > 1
-      ? `Latest Sarkari Results – Page ${page} | Sarkari Result`
-      : `Latest Sarkari Results | Sarkari Result`;
+  const res = await fetch(
+    `https://api.sarkariresult6.com/wp-json/wp/v2/results?per_page=10&page=${page}&_fields=id,slug,title`,
+    {
+      cache: "force-cache",
+      next: { revalidate: 300 }
+    }
+  );
 
-  const description =
-    page > 1
-      ? `Latest Sarkari Exam Results Page ${page} – Sarkari Result`
-      : `Latest Sarkari Exam Results – Sarkari Result`;
+  const totalPages = Number(res.headers.get("X-WP-TotalPages")) || 1;
 
-  return {
-    title,
-    description,
-    alternates: {
-      canonical: page === 1 ? baseUrl : `${baseUrl}?page=${page}`,
-    },
-    robots: {
-      index: true,
-      follow: true,
-    },
-  };
+  const results = await res.json();
+
+  return { results, totalPages };
 }
 
-/* =========================
-   PAGE RENDER
-========================= */
+export default async function Page({ searchParams }) {
 
-export default function Page() {
+  const params = await searchParams;
+  const page = Number(params?.page) || 1;
+
+  const { results, totalPages } = await getResults(page);
+
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Results />
-    </Suspense>
+    <>
+      <Results results={results} />
+
+      <ResultsPagination page={page} totalPages={totalPages} />
+    </>
   );
 }

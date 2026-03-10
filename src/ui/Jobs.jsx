@@ -1,43 +1,11 @@
 "use client";
 
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
-export default function LatestJobsPage() {
-  const searchParams = useSearchParams();
+export default function LatestJobsPage({ jobs, page, totalPages }) {
+
   const router = useRouter();
-
-  const page = Number(searchParams.get("page")) || 1;
-  const perPage = 10;
-
-  const [jobs, setJobs] = useState([]);
-  const [totalPages, setTotalPages] = useState(1);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        setLoading(true);
-
-        const res = await fetch(
-          `https://api.sarkariresult6.com/wp-json/wp/v2/jobs?per_page=${perPage}&page=${page}&_embed`
-        );
-
-        const total = res.headers.get("X-WP-TotalPages");
-        setTotalPages(Number(total));
-
-        const data = await res.json();
-        setJobs(data);
-      } catch (e) {
-        console.error(e);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchJobs();
-  }, [page]);
 
   const goToPage = (p) => {
     if (p < 1 || p > totalPages) return;
@@ -51,56 +19,66 @@ export default function LatestJobsPage() {
         Latest Jobs
       </h1>
 
-      {loading && <div className="text-center py-6">Loading...</div>}
+      <div className="overflow-x-auto">
+        <table className="w-full border border-gray-300 text-sm">
 
-      {!loading && (
-        <div className="overflow-x-auto">
-          <table className="w-full border border-gray-300 text-sm">
-            <thead>
-              <tr className="bg-red-700 text-white">
-                <th className="border px-3 py-2 text-left">Post Name</th>
-                <th className="border px-3 py-2 text-left">Organization</th>
-                <th className="border px-3 py-2">Last Date</th>
-                <th className="border px-3 py-2">Posts</th>
-                <th className="border px-3 py-2">Apply</th>
+          <thead>
+            <tr className="bg-red-700 text-white">
+              <th className="border px-3 py-2 text-left">Post Name</th>
+              <th className="border px-3 py-2 text-left">Organization</th>
+              <th className="border px-3 py-2">Last Date</th>
+              <th className="border px-3 py-2">Posts</th>
+              <th className="border px-3 py-2">Apply</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            {jobs.map((job) => (
+              <tr key={job.id} className="hover:bg-gray-100">
+
+                <td className="border px-3 py-2">
+                  <Link
+                    href={`/latest-jobs/${job.slug}`}
+                    className="text-blue-600 hover:underline"
+                    prefetch={false}
+                  >
+                    {job.title.rendered}
+                  </Link>
+                </td>
+
+                <td className="border px-3 py-2">
+                  {job.acf?.organization || "-"}
+                </td>
+
+                <td className="border px-3 py-2 text-center">
+                  {job.acf?.last_date || "-"}
+                </td>
+
+                <td className="border px-3 py-2 text-center">
+                  {job.acf?.total_posts || "-"}
+                </td>
+
+                <td className="border px-3 py-2 text-center">
+                  <Link
+                    href={`/latest-jobs/${job.slug}`}
+                    className="bg-green-600 text-white px-3 py-1 rounded text-xs"
+                    prefetch={false}
+                  >
+                    Click
+                  </Link>
+                </td>
+
               </tr>
-            </thead>
-            <tbody>
-              {jobs.map(job => (
-                <tr key={job.id} className="hover:bg-gray-100">
-                  <td className="border px-3 py-2">
-                    <Link
-                      href={`/latest-jobs/${job.slug}`}
-                      className="text-blue-600 hover:underline"
-                    >
-                      {job.title.rendered}
-                    </Link>
-                  </td>
-                  <td className="border px-3 py-2">
-                    {job.acf?.organization || "-"}
-                  </td>
-                  <td className="border px-3 py-2 text-center">
-                    {job.acf?.last_date || "-"}
-                  </td>
-                  <td className="border px-3 py-2 text-center">
-                    {job.acf?.total_posts || "-"}
-                  </td>
-                  <td className="border px-3 py-2 text-center">
-                    <Link
-                      href={`/latest-jobs/${job.slug}`}
-                      className="bg-green-600 text-white px-3 py-1 rounded text-xs"
-                    >
-                      Click
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+            ))}
+
+          </tbody>
+
+        </table>
+      </div>
 
       {/* PAGINATION */}
+
       <div className="flex items-center justify-between mt-8">
 
         <button
@@ -124,6 +102,7 @@ export default function LatestJobsPage() {
         </button>
 
       </div>
+
     </div>
   );
 }

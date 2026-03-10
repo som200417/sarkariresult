@@ -1,22 +1,43 @@
-"use client";
+import JobsTable from "@/ui/JobsTable";
+import Pagination from "@/components/Pagination";
 
-import { Suspense, useState } from "react";
-import LatestJobsPage from "@/ui/Jobs";
+export const revalidate = 300;
+export const dynamic = "force-static";
+async function getJobs(page = 1) {
 
-function JobsWrapperInner({ initialPage = 1 }) {
-  const [page, setPage] = useState(initialPage);
+  const res = await fetch(
+  `https://api.sarkariresult6.com/wp-json/wp/v2/jobs?per_page=10&page=${page}&_fields=id,slug,title,acf`,
+  {
+    cache: "force-cache",
+    next: { revalidate: 300 }
+  }
+);
 
-  return (
-    <div>
-      <LatestJobsPage page={page} onPageChange={setPage} />
-    </div>
-  );
+  const totalPages = Number(res.headers.get("X-WP-TotalPages")) || 1;
+
+  const jobs = await res.json();
+
+  return { jobs, totalPages };
 }
 
-export default function JobsWrapper(props) {
+export default async function Page({ searchParams }) {
+
+  const params = await searchParams;
+  const page = Number(params?.page) || 1;
+
+  const { jobs, totalPages } = await getJobs(page);
+
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <JobsWrapperInner {...props} />
-    </Suspense>
+    <div className="max-w-6xl mx-auto px-4 py-6">
+
+      <h1 className="text-2xl font-bold mb-6">
+        Latest Jobs
+      </h1>
+
+      <JobsTable jobs={jobs} />
+
+      <Pagination page={page} totalPages={totalPages} />
+
+    </div>
   );
 }

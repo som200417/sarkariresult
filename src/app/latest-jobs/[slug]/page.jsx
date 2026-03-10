@@ -1,14 +1,14 @@
 import { notFound } from "next/navigation";
 import JobSingle from "@/ui/JobSingle";
 
-const API = "https://api.sarkariresult6.com/wp-json/wp/v2/jobs";
-export const dynamic = "force-dynamic";
-export const fetchCache = "force-no-store";
+export const revalidate = 300; // 5 min cache
 
 async function getJob(slug) {
   const res = await fetch(
     `https://api.sarkariresult6.com/wp-json/wp/v2/jobs?slug=${slug}&_embed`,
-    { cache: "no-store" }
+    {
+      next: { revalidate: 300 },
+    }
   );
 
   if (!res.ok) return null;
@@ -18,7 +18,6 @@ async function getJob(slug) {
 }
 
 export async function generateMetadata({ params }) {
-
   const post = await getJob(params.slug);
 
   if (!post) {
@@ -32,8 +31,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const p = await params;
-  const post = await getJob(p.slug);
+  const post = await getJob(params.slug);
 
   if (!post) notFound();
 
