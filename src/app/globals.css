@@ -40,6 +40,16 @@ html, body {
     padding-right: 20px;
   }
 }
+a {
+  color: #1d4ed8;
+}
 
+a:visited {
+  color: #800080;
+}
+
+a:hover {
+  text-decoration: underline;
+}
 
 
