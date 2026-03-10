@@ -1,52 +1,34 @@
-import AdmitCards from "@/ui/AdmitCard";
-import Pagination from "@/components/Pagination";
+import AnswerKeys from "@/ui/AnswerKeys";
 
-export const revalidate = 300;
-export const dynamic = "force-static";
+const API = "https://api.sarkariresult6.com/wp-json/wp/v2/answer_keys";
 
-export const metadata = {
-  title: "Latest Admit Cards 2026 | Sarkari Result",
-  description:
-    "Download latest Admit Cards, Hall Tickets and Exam Dates for all Sarkari Exams 2026.",
-  alternates: {
-    canonical: "https://sarkariresult6.com/admit-card",
-  },
-};
+export const dynamic = "force-dynamic";
 
-async function getAdmitCards(page = 1) {
+async function getAnswerKeys() {
 
   const res = await fetch(
-    `https://api.sarkariresult6.com/wp-json/wp/v2/admit-card?per_page=10&page=${page}&_fields=id,slug,title,acf`,
+    `${API}?orderby=date&order=desc&per_page=20`,
     {
-      next: { revalidate: 300 }
+      cache: "no-store"
     }
   );
 
-  const totalPages = Number(res.headers.get("X-WP-TotalPages")) || 1;
+  if (!res.ok) return [];
 
-  const admitCards = await res.json();
+  return res.json();
 
-  return { admitCards, totalPages };
 }
 
-export default async function Page({ searchParams }) {
+export default async function Page() {
 
-  const params = await searchParams;
-  const page = Number(params?.page) || 1;
-
-  const { admitCards, totalPages } = await getAdmitCards(page);
+  const answerKeys = await getAnswerKeys();
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
 
-      <h1 className="text-2xl md:text-3xl font-bold text-red-700 mb-6 text-center md:text-left">
-        Latest Admit Cards / Hall Tickets 2026
-      </h1>
-
-      <AdmitCards cards={admitCards} />
-
-      <Pagination page={page} totalPages={totalPages} />
+      <AnswerKeys keys={answerKeys} />
 
     </div>
   );
+
 }

@@ -1,6 +1,8 @@
 import Home from "@/ui/Home";
+import fs from "fs/promises";
+import path from "path";
 
-export const revalidate = 60; // cache 60 seconds
+export const revalidate = 60;
 
 export const metadata = {
   title: "Sarkari Result 2026 – Latest Jobs, Admit Card, Results",
@@ -23,18 +25,9 @@ export const metadata = {
 };
 
 async function getHomeData() {
-  const res = await fetch(
-    "https://api.sarkariresult6.com/wp-json/bea/v1/home",
-    {
-      next: { revalidate: 60 },
-    }
-  );
-
-  if (!res.ok) {
-    throw new Error("Home API failed");
-  }
-
-  return res.json();
+  const filePath = path.join(process.cwd(), "public/data/home.json");
+  const file = await fs.readFile(filePath, "utf8");
+  return JSON.parse(file);
 }
 
 export default async function Page() {

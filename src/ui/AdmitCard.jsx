@@ -2,82 +2,102 @@ import Link from "next/link";
 
 export default function AdmitCards({ cards = [] }) {
 
+  if (cards.length === 0) {
+    return (
+      <div className="text-center py-10">
+        No admit cards available right now.
+      </div>
+    );
+  }
+
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6">
+    <div className="max-w-6xl mx-auto px-3 sm:px-4 py-6">
 
-      <div className="overflow-x-auto border border-gray-300 rounded-lg shadow-sm">
+      <div className="border border-gray-300 rounded-lg shadow-sm overflow-hidden">
 
-        <table className="w-full table-fixed text-xs sm:text-sm md:text-base">
+        <table className="w-full text-xs sm:text-sm md:text-base">
 
           <thead>
             <tr className="bg-red-700 text-white">
-              <th className="border px-4 py-3 text-left">Exam / Post Name</th>
-              <th className="border px-4 py-3 text-left">Organization</th>
-              <th className="border px-4 py-3 text-center">Exam Date</th>
-              <th className="border px-4 py-3 text-center">Status</th>
-              <th className="border px-4 py-3 text-center">Action</th>
+
+              <th className="border px-4 py-3 text-left">
+                Exam / Post Name
+              </th>
+
+              {/* hidden on mobile */}
+              <th className="border px-4 py-3 text-left hidden sm:table-cell">
+                Organization
+              </th>
+
+              {/* hidden on mobile */}
+              <th className="border px-4 py-3 text-center hidden sm:table-cell">
+                Exam Date
+              </th>
+
+              {/* hidden on mobile */}
+              <th className="border px-4 py-3 text-center hidden sm:table-cell">
+                Status
+              </th>
+
+              {/* hidden on mobile */}
+              <th className="border px-4 py-3 text-center hidden sm:table-cell">
+                Action
+              </th>
+
             </tr>
           </thead>
 
           <tbody>
 
-            {cards.length === 0 ? (
-              <tr>
-                <td colSpan={5} className="text-center py-10">
-                  No admit cards available right now.
-                </td>
-              </tr>
-            ) : (
-              cards.map((card) => {
+            {cards.map((card) => {
 
-                const acf = card.acf || {};
-                const status =
-                  acf.status ||
-                  (acf.download_link ? "Available" : "Not Released");
+              const acf = card.acf || {};
+              const status =
+                acf.status ||
+                (acf.download_link ? "Available" : "Not Released");
 
-                return (
+              return (
 
-                  <tr key={card.id} className="hover:bg-gray-50">
+                <tr key={card.id} className="hover:bg-gray-50">
 
-                    <td className="border px-4 py-3 font-medium">
+                  <td className="border px-4 py-3 font-medium">
 
-                      <Link
-                        href={`/admit-card/${card.slug}`}
-                        className="text-blue-700 hover:underline"
-                      >
-                        {card.title.rendered}
-                      </Link>
+                    <Link
+                      href={`/admit-card/${card.slug}`}
+                      className="text-blue-700 hover:underline"
+                    >
+                      {card.title.rendered}
+                    </Link>
 
-                    </td>
+                  </td>
 
-                    <td className="border px-4 py-3">
-                      {acf.organization || acf.board || "—"}
-                    </td>
+                  <td className="border px-4 py-3 hidden sm:table-cell">
+                    {acf.organization || acf.board || "—"}
+                  </td>
 
-                    <td className="border px-4 py-3 text-center">
-                      {acf.exam_date || "—"}
-                    </td>
+                  <td className="border px-4 py-3 text-center hidden sm:table-cell">
+                    {acf.exam_date || "—"}
+                  </td>
 
-                    <td className="border px-4 py-3 text-center">
-                      {status}
-                    </td>
+                  <td className="border px-4 py-3 text-center hidden sm:table-cell">
+                    {status}
+                  </td>
 
-                    <td className="border px-4 py-3 text-center">
+                  <td className="border px-4 py-3 text-center hidden sm:table-cell">
 
-                      <Link
-                        href={`/admit-card/${card.slug}`}
-                        className="bg-green-600 text-white px-4 py-1.5 rounded text-sm"
-                      >
-                        Click
-                      </Link>
+                    <Link
+                      href={`/admit-card/${card.slug}`}
+                      className="bg-green-600 text-white px-4 py-1.5 rounded text-sm"
+                    >
+                      Click
+                    </Link>
 
-                    </td>
+                  </td>
 
-                  </tr>
+                </tr>
 
-                );
-              })
-            )}
+              );
+            })}
 
           </tbody>
 
