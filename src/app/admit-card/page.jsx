@@ -1,8 +1,7 @@
 import AdmitCards from "@/ui/AdmitCard";
 import Pagination from "@/components/Pagination";
 
-export const revalidate = 300;
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Latest Admit Cards 2026 | Sarkari Result",
