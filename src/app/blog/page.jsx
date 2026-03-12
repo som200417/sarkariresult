@@ -3,7 +3,7 @@ import Pagination from "@/components/Pagination";
 import fs from "fs/promises";
 import path from "path";
 
-export const revalidate = 300;
+export const revalidate = 60;
 export const dynamic = "force-static";
 
 async function getPosts(page = 1) {

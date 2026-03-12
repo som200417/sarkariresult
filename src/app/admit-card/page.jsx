@@ -3,7 +3,7 @@ import path from "path";
 import AdmitCards from "@/ui/AdmitCard";
 import Pagination from "@/components/Pagination";
 
-export const revalidate = 300;
+export const revalidate = 60;
 export const dynamic = "force-static";
 
 export const metadata = {

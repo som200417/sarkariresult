@@ -1,51 +1,6 @@
 {
   "posts": [
     {
-      "id": 389,
-      "type": "jobs",
-      "slug": "lets-make-it-proper-fast",
-      "date": "2026-03-10T09:07:40+00:00",
-      "title": {
-        "rendered": "Lets make it proper fast"
-      },
-      "acf": {
-        "short_information": "",
-        "table_header": {
-          "red": "",
-          "green": "",
-          "blue_text": "",
-          "blue_link": ""
-        },
-        "left_column_title": "",
-        "right_column_title": "",
-        "age_limit_title": "",
-        "total_posts": "",
-        "vacancy_title": "",
-        "eligibility_title": "",
-        "exam_pattern_title": "",
-        "marking_scheme_title": "",
-        "mode_selection_title": "",
-        "how_to_title": "",
-        "faq_title": "",
-        "important_links_title": "",
-        "important_dates": "",
-        "right_column_details": "",
-        "age_limit": "",
-        "vacancy_details": "",
-        "eligibility": "",
-        "exam_pattern": "",
-        "marking_scheme": "",
-        "mode_of_selection": "",
-        "how_to_steps": "",
-        "faq": "",
-        "apply_link": "",
-        "notification_pdf": "",
-        "official_website": "",
-        "download_link": "",
-        "objection_link": ""
-      }
-    },
-    {
       "id": 384,
       "type": "answer_keys",
       "slug": "ssc-answer-key",
@@ -367,7 +322,7 @@
       }
     }
   ],
-  "total": 8,
+  "total": 7,
   "pages": 1,
   "page": 1
 }

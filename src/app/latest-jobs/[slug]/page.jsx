@@ -8,7 +8,7 @@ async function getJob(slug) {
   const res = await fetch(
     `https://api.sarkariresult6.com/wp-json/wp/v2/jobs?slug=${slug}&_embed`,
     {
-      next: { revalidate: 300 },
+      next: { revalidate: 60 },
     }
   );
 

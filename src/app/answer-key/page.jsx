@@ -2,7 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import AnswerKeys from "@/ui/AnswerKeys";
 
-export const revalidate = 300;
+export const revalidate = 60;
 export const dynamic = "force-static";
 
 export const metadata = {

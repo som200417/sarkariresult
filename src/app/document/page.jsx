@@ -2,7 +2,7 @@ import Documents from "@/ui/Documents";
 
 const API = "https://api.sarkariresult6.com/wp-json/wp/v2/documents";
 
-export const revalidate = 300;
+export const revalidate = 60;
 export const dynamic = "force-static";
 
 export const metadata = {
@@ -18,7 +18,7 @@ async function getDocuments() {
   const res = await fetch(
     `${API}?orderby=date&order=desc&per_page=20&_fields=id,slug,title.rendered`,
     {
-      next: { revalidate: 300 },
+      next: { revalidate: 60 },
     }
   );
 
