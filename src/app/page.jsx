@@ -25,10 +25,14 @@ export const metadata = {
 };
 
 async function getHomeData() {
-  const filePath = path.join(process.cwd(), "public/data/home.json");
-  const file = await fs.readFile(filePath, "utf8");
-  return JSON.parse(file);
+   const res = await fetch(
+    "https://www.sarkariresult6.com/data/home.json",
+    { cache: "no-store" }
+  );
+
+  return res.json();
 }
+
 
 export default async function Page() {
   const homeData = await getHomeData();
