@@ -1,6 +1,6 @@
+import fs from "fs/promises";
+import path from "path";
 import Admissions from "@/ui/Admissions";
-
-const API = "https://api.sarkariresult6.com/wp-json/wp/v2/admissions";
 
 export const revalidate = 300;
 export const dynamic = "force-static";
@@ -13,33 +13,42 @@ export const metadata = {
 
 async function getAdmissions(page = 1) {
   try {
-    const res = await fetch(
-      `${API}?per_page=10&page=${page}&orderby=date&order=desc&_fields=id,slug,title`,
-      {
-        next: { revalidate: 300 },
-      }
+
+    const filePath = path.join(
+      process.cwd(),
+      "public/data/admissions.json"
     );
 
-    if (!res.ok) {
-      return { data: [], totalPages: 1 };
-    }
+    const file = await fs.readFile(filePath, "utf8");
 
-    const totalPages = Number(res.headers.get("X-WP-TotalPages") || 1);
-    const data = await res.json();
+    const allData = JSON.parse(file) || [];
+
+    const perPage = 10;
+
+    const start = (page - 1) * perPage;
+
+    const paginated = allData.slice(start, start + perPage);
+
+    const totalPages = Math.ceil(allData.length / perPage);
 
     return {
-      data: Array.isArray(data) ? data : [],
+      data: paginated,
       totalPages,
     };
+
   } catch (error) {
-    console.error("Admissions fetch error:", error);
+
+    console.error("Admissions JSON error:", error);
+
     return { data: [], totalPages: 1 };
+
   }
 }
 
 export default async function AdmissionsPage({ searchParams }) {
 
   const params = await searchParams;
+
   const page = Number(params?.page) || 1;
 
   const { data, totalPages } = await getAdmissions(page);

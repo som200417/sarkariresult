@@ -1,40 +1,52 @@
-import Documents from "@/ui/Documents";
-
-const API = "https://api.sarkariresult6.com/wp-json/wp/v2/documents";
+import fs from "fs/promises";
+import path from "path";
+import AnswerKeys from "@/ui/AnswerKeys";
 
 export const revalidate = 300;
 export const dynamic = "force-static";
 
 export const metadata = {
-  title: "Latest Documents – Sarkari Result",
+  title: "Latest Answer Keys 2026 | Sarkari Result",
   description:
-    "Download latest government documents, notices and official PDFs.",
+    "Download latest answer keys for SSC, UPSC, Railway, Bank and other government exams.",
   alternates: {
-    canonical: "https://sarkariresult6.com/documents",
+    canonical: "https://sarkariresult6.com/answer-key",
   },
 };
 
-async function getDocuments() {
-  const res = await fetch(
-    `${API}?orderby=date&order=desc&per_page=20&_fields=id,slug,title.rendered`,
-    {
-      next: { revalidate: 300 },
-    }
-  );
+async function getAnswerKeys() {
+  try {
 
-  if (!res.ok) return [];
+    const filePath = path.join(
+      process.cwd(),
+      "public/data/answer-keys.json"
+    );
 
-  return res.json();
+    const file = await fs.readFile(filePath, "utf8");
+
+    const answerKeys = JSON.parse(file) || [];
+
+    return answerKeys;
+
+  } catch (err) {
+
+    console.error("Answer Keys JSON error:", err);
+
+    return [];
+
+  }
 }
 
-export default async function DocumentsPage() {
-  const docs = await getDocuments();
+export default async function Page() {
+
+  const answerKeys = await getAnswerKeys();
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
 
-      <Documents docs={docs} />
+      <AnswerKeys keys={answerKeys} />
 
     </div>
   );
+
 }

@@ -40,7 +40,9 @@ export default function LatestJobsPage({ jobs, page, totalPages }) {
                 <td className="border px-3 py-2">
                   <Link
                     href={`/latest-jobs/${job.slug}`}
-                    className="text-blue-600 hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-700 hover:underline font-medium visited:text-purple-700"
                     prefetch={false}
                   >
                     {job.title.rendered}
@@ -62,6 +64,8 @@ export default function LatestJobsPage({ jobs, page, totalPages }) {
                 <td className="border px-3 py-2 text-center">
                   <Link
                     href={`/latest-jobs/${job.slug}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="bg-green-600 text-white px-3 py-1 rounded text-xs"
                     prefetch={false}
                   >

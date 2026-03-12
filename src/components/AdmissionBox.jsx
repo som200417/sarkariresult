@@ -15,7 +15,7 @@ export default function AdmissionBox({ data }) {
         <div className="text-right px-3 py-2 border-t">
           <Link
             href="/admission"
-            className="text-blue-700 font-semibold hover:underline"
+            className="text-blue-700  font-semibold hover:underline "
           >
             View More →
           </Link>
@@ -35,7 +35,9 @@ export default function AdmissionBox({ data }) {
           <li key={item.id}>
             <Link
               href={`/admission/${item.slug}`}
-              className="text-blue-700 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-700 hover:underline visited:text-purple-700"
             >
               {item.title}
             </Link>

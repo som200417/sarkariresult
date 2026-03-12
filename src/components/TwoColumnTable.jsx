@@ -42,7 +42,7 @@ export function TwoColumnTable({
           {topTitleRed && <div className="text-red-700">{topTitleRed}</div>}
           {topTitleGreen && <div className="text-green-700">{topTitleGreen}</div>}
           {topTitleBlue?.text && (
-            <div className="text-blue-700 underline">
+            <div className="text-blue-700 hover:underline ">
               <a href={topTitleBlue.link} target="_blank" rel="noreferrer">
                 {topTitleBlue.text}
               </a>

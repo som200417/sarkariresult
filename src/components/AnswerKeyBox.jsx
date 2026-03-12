@@ -18,7 +18,9 @@ export default function AnswerKeyBox({ data }) {
           <li key={item.id}>
             <Link
               href={`/answer-key/${item.slug}`}
-              className="text-blue-700 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-700 hover:underline visited:text-purple-700"
             >
               {item.title}
             </Link>
@@ -29,7 +31,7 @@ export default function AnswerKeyBox({ data }) {
       <div className="text-right px-3 py-2 border-t">
         <Link
           href="/answer-key"
-          className="text-blue-700 font-semibold hover:underline"
+          className="text-blue-700 font-semibold hover:underline "
         >
           View More →
         </Link>

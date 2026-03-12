@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import AdmitCardDetail from "@/ui/AdmitCardDetail";
-
 const API = "https://api.sarkariresult6.com/wp-json/wp/v2/admit-card";
 
 export const dynamic = "force-dynamic";

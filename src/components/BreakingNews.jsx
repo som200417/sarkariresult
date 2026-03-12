@@ -32,6 +32,7 @@ export default function BreakingNews({ data }) {
                 hover:text-yellow-300
                 transition
                 flex items-center
+                
               "
             >
               <span

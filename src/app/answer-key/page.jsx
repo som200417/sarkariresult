@@ -1,22 +1,40 @@
+import fs from "fs/promises";
+import path from "path";
 import AnswerKeys from "@/ui/AnswerKeys";
 
-const API = "https://api.sarkariresult6.com/wp-json/wp/v2/answer_keys";
+export const revalidate = 300;
+export const dynamic = "force-static";
 
-export const dynamic = "force-dynamic";
+export const metadata = {
+  title: "Latest Answer Keys 2026 | Sarkari Result",
+  description:
+    "Download latest answer keys for SSC, UPSC, Railway, Bank and other government exams.",
+  alternates: {
+    canonical: "https://sarkariresult6.com/answer-key",
+  },
+};
 
 async function getAnswerKeys() {
+  try {
 
-  const res = await fetch(
-    `${API}?orderby=date&order=desc&per_page=20`,
-    {
-      cache: "no-store"
-    }
-  );
+    const filePath = path.join(
+      process.cwd(),
+      "public/data/answer-keys.json"
+    );
 
-  if (!res.ok) return [];
+    const file = await fs.readFile(filePath, "utf8");
 
-  return res.json();
+    const answerKeys = JSON.parse(file) || [];
 
+    return answerKeys;
+
+  } catch (err) {
+
+    console.error("Answer Keys JSON error:", err);
+
+    return [];
+
+  }
 }
 
 export default async function Page() {

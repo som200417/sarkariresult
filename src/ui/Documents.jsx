@@ -41,7 +41,9 @@ export default function Documents({ docs = [] }) {
                     <Link
                       href={`/document/${doc.slug}`}
                       prefetch={false}
-                      className="text-blue-700 hover:underline"
+                      target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-700 hover:underline visited:text-purple-700"
                     >
                       {doc.title.rendered}
                     </Link>

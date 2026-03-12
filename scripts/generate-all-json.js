@@ -1,74 +1,118 @@
 import fs from "fs";
 import path from "path";
 
-const BASE = "https://api.sarkariresult6.com/wp-json/bea/v1";
+/* API Bases */
+const BASE_V1 = "https://api.sarkariresult6.com/wp-json/bea/v1";
+const BASE_WP = "https://api.sarkariresult6.com/wp-json/wp/v2";
 
+/* Pagination */
 const PER_PAGE = 10;
 const MAX_PAGES = 20;
 
+/* Data folder */
 const DATA_DIR = path.join(process.cwd(), "public/data");
 
-/* Ensure data folder exists */
 if (!fs.existsSync(DATA_DIR)) {
   fs.mkdirSync(DATA_DIR, { recursive: true });
 }
 
-/* Save JSON helper */
+/* Save JSON */
 function saveJSON(file, data) {
   const filePath = path.join(DATA_DIR, `${file}.json`);
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
   console.log(`✅ ${file}.json generated`);
 }
 
-/* Generate homepage JSON */
-async function generateHome() {
+/* Fetch helper */
+async function fetchData(url) {
+  const res = await fetch(url);
 
+  if (!res.ok) {
+    throw new Error(`API error ${res.status} → ${url}`);
+  }
+
+  return res.json();
+}
+
+/* Home JSON */
+async function generateHome() {
+  try {
+    const data = await fetchData(`${BASE_V1}/home`);
+    saveJSON("home", data);
+  } catch (err) {
+    console.error("❌ home.json failed:", err);
+  }
+}
+
+/* Category JSON (WordPress REST) */
+async function generateCategory(endpoint, file) {
   try {
 
-    const res = await fetch(`${BASE}/home`);
-    const data = await res.json();
+    const data = await fetchData(`${BASE_WP}/${endpoint}?per_page=100`);
 
-    saveJSON("home", data);
+    saveJSON(file, data);
 
   } catch (err) {
 
-    console.error("❌ Home JSON failed:", err);
+    console.error(`❌ ${file}.json failed`, err);
 
   }
+}
+
+/* Generate all CPT JSON */
+async function generateCategories() {
+
+  console.log("📦 Generating category JSON...");
+
+  await Promise.all([
+
+    generateCategory("jobs", "latest-jobs"),
+
+    generateCategory("results", "results"),
+
+    generateCategory("admit-card", "admit-cards"),
+
+    generateCategory("answer_keys", "answer-keys"),
+
+    generateCategory("documents", "documents"),
+
+    generateCategory("admissions", "admissions")
+
+  ]);
 
 }
 
-/* Generate blog pagination JSON */
+/* Combined pages */
 async function generateCombinedPages() {
+
+  console.log("📄 Generating blog pages...");
+
+  const tasks = [];
 
   for (let page = 1; page <= MAX_PAGES; page++) {
 
-    try {
+    tasks.push(
 
-      const res = await fetch(
-        `${BASE}/combined?per_page=${PER_PAGE}&page=${page}`
-      );
+      fetchData(`${BASE_V1}/combined?per_page=${PER_PAGE}&page=${page}`)
+        .then(data => saveJSON(`combined-page-${page}`, data))
+        .catch(err => console.error(`❌ combined-page-${page} failed`, err))
 
-      const data = await res.json();
-
-      saveJSON(`combined-page-${page}`, data);
-
-    } catch (err) {
-
-      console.error(`❌ combined-page-${page} failed`, err);
-
-    }
+    );
 
   }
 
+  await Promise.all(tasks);
+
 }
 
-/* Run all generators */
+/* Run generator */
 async function generateAll() {
 
   console.log("🚀 Generating JSON cache...");
 
   await generateHome();
+
+  await generateCategories();
 
   await generateCombinedPages();
 

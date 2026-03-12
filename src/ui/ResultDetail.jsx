@@ -33,7 +33,9 @@ export default function ResultDetail({ post }) {
             <span className="font-semibold text-gray-700">Previous:</span>
             <div>
               <Link
-                href="/results"
+                href="/"
+                target="_blank" 
+                rel="noopener noreferrer"
                 className="text-blue-600 hover:underline"
               >
                 Back to Results List
@@ -45,7 +47,9 @@ export default function ResultDetail({ post }) {
             <span className="font-semibold text-gray-700">About</span>
             <div>
               <Link
-                href="/about-us"
+              target="_blank" 
+              rel="noopener noreferrer"
+                href="/"
                 className="text-blue-600 hover:underline"
               >
                 Sarkari Result
@@ -82,7 +86,9 @@ export default function ResultDetail({ post }) {
           ].map((title, idx) => (
             <Link
               key={idx}
-              href="/results"
+                  target="_blank"
+                rel="noopener noreferrer"
+              href="/"
               className="border border-gray-400 text-center py-4 text-blue-700 font-medium hover:underline hover:bg-gray-50 transition"
             >
               {title}
@@ -98,18 +104,17 @@ export default function ResultDetail({ post }) {
         </div>
 
         <div className="p-4 bg-white space-y-3">
-          <Link href="/blog" className="block text-blue-600 hover:underline">
+          <Link href="/blog" target="_blank" rel="noopener noreferrer" className="block text-blue-600 hover:underline">
             Educational Resources
           </Link>
-          <Link href="/blog" className="block text-blue-600 hover:underline">
+          <Link href="/blog" target="_blank" rel="noopener noreferrer" className="block text-blue-600 hover:underline">
             Government & Public Sector Jobs
           </Link>
-          <Link href="/blog" className="block text-blue-600 hover:underline">
+          <Link href="/blog" target="_blank" rel="noopener noreferrer" className="block text-blue-600 hover:underline">
             Primary & Secondary Schooling
           </Link>
         </div>
       </div>
-
     </div>
   );
 }

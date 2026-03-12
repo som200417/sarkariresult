@@ -64,7 +64,9 @@ export default function AdmitCards({ cards = [] }) {
 
                     <Link
                       href={`/admit-card/${card.slug}`}
-                      className="text-blue-700 hover:underline"
+                     target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-700 hover:underline visited:text-purple-700"
                     >
                       {card.title.rendered}
                     </Link>
@@ -87,6 +89,8 @@ export default function AdmitCards({ cards = [] }) {
 
                     <Link
                       href={`/admit-card/${card.slug}`}
+                       target="_blank"
+                rel="noopener noreferrer"
                       className="bg-green-600 text-white px-4 py-1.5 rounded text-sm"
                     >
                       Click

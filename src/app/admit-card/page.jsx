@@ -1,7 +1,10 @@
+import fs from "fs/promises";
+import path from "path";
 import AdmitCards from "@/ui/AdmitCard";
 import Pagination from "@/components/Pagination";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
+export const dynamic = "force-static";
 
 export const metadata = {
   title: "Latest Admit Cards 2026 | Sarkari Result",
@@ -13,24 +16,40 @@ export const metadata = {
 };
 
 async function getAdmitCards(page = 1) {
+  try {
 
-  const res = await fetch(
-    `https://api.sarkariresult6.com/wp-json/wp/v2/admit-card?per_page=10&page=${page}&_fields=id,slug,title,acf`,
-    {
-      next: { revalidate: 300 }
-    }
-  );
+    const filePath = path.join(
+      process.cwd(),
+      "public/data/admit-cards.json"
+    );
 
-  const totalPages = Number(res.headers.get("X-WP-TotalPages")) || 1;
+    const file = await fs.readFile(filePath, "utf8");
 
-  const admitCards = await res.json();
+    const allCards = JSON.parse(file) || [];
 
-  return { admitCards, totalPages };
+    const perPage = 10;
+
+    const start = (page - 1) * perPage;
+
+    const admitCards = allCards.slice(start, start + perPage);
+
+    const totalPages = Math.ceil(allCards.length / perPage);
+
+    return { admitCards, totalPages };
+
+  } catch (err) {
+
+    console.error("Admit Cards JSON error:", err);
+
+    return { admitCards: [], totalPages: 1 };
+
+  }
 }
 
 export default async function Page({ searchParams }) {
 
   const params = await searchParams;
+
   const page = Number(params?.page) || 1;
 
   const { admitCards, totalPages } = await getAdmitCards(page);

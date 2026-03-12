@@ -26,8 +26,11 @@ export default function JobsTable({ jobs }) {
 
                 <Link
                   href={`/latest-jobs/${job.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   prefetch={false}
-                  className="text-blue-600 hover:underline"
+                  className="text-blue-700 text:bold hover:underline visited:text-purple-700"
+
                 >
                   {job.title.rendered}
                 </Link>

@@ -1,0 +1,356 @@
+[
+  {
+    "id": 389,
+    "date": "2026-03-10T09:07:40",
+    "date_gmt": "2026-03-10T09:07:40",
+    "guid": {
+      "rendered": "https://api.sarkariresult6.com/?post_type=jobs&#038;p=389"
+    },
+    "modified": "2026-03-10T09:07:52",
+    "modified_gmt": "2026-03-10T09:07:52",
+    "slug": "lets-make-it-proper-fast",
+    "status": "publish",
+    "type": "jobs",
+    "link": "https://api.sarkariresult6.com/latest-jobs/lets-make-it-proper-fast/",
+    "title": {
+      "rendered": "Lets make it proper fast"
+    },
+    "content": {
+      "rendered": "",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "",
+      "protected": false
+    },
+    "featured_media": 0,
+    "template": "",
+    "department": [],
+    "state": [],
+    "class_list": [
+      "post-389",
+      "jobs",
+      "type-jobs",
+      "status-publish",
+      "hentry"
+    ],
+    "acf": {
+      "short_information": "",
+      "table_header": {
+        "red": "",
+        "green": "",
+        "blue_text": "",
+        "blue_link": ""
+      },
+      "left_column_title": "",
+      "right_column_title": "",
+      "age_limit_title": "",
+      "total_posts": "",
+      "vacancy_title": "",
+      "eligibility_title": "",
+      "exam_pattern_title": "",
+      "marking_scheme_title": "",
+      "mode_selection_title": "",
+      "how_to_title": "",
+      "faq_title": "",
+      "important_links_title": "",
+      "important_dates": "",
+      "right_column_details": "",
+      "age_limit": "",
+      "vacancy_details": "",
+      "eligibility": "",
+      "exam_pattern": "",
+      "marking_scheme": "",
+      "mode_of_selection": "",
+      "how_to_steps": "",
+      "faq": "",
+      "apply_link": "",
+      "notification_pdf": "",
+      "official_website": "",
+      "download_link": "",
+      "objection_link": ""
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/jobs/389",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/jobs"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/types/jobs"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/media?parent=389"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "department",
+          "embeddable": true,
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/department?post=389"
+        },
+        {
+          "taxonomy": "state",
+          "embeddable": true,
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/state?post=389"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 381,
+    "date": "2026-02-28T19:44:46",
+    "date_gmt": "2026-02-28T19:44:46",
+    "guid": {
+      "rendered": "https://api.sarkariresult6.com/?post_type=jobs&#038;p=381"
+    },
+    "modified": "2026-02-28T20:03:00",
+    "modified_gmt": "2026-02-28T20:03:00",
+    "slug": "railway-rrb-group-d-online-form-2026-last-date-02-03-2026",
+    "status": "publish",
+    "type": "jobs",
+    "link": "https://api.sarkariresult6.com/latest-jobs/railway-rrb-group-d-online-form-2026-last-date-02-03-2026/",
+    "title": {
+      "rendered": "Railway RRB Group D Online Form 2026"
+    },
+    "content": {
+      "rendered": "",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "",
+      "protected": false
+    },
+    "featured_media": 0,
+    "template": "",
+    "department": [],
+    "state": [],
+    "class_list": [
+      "post-381",
+      "jobs",
+      "type-jobs",
+      "status-publish",
+      "hentry"
+    ],
+    "acf": {
+      "short_information": "Railway Recruitment Boards (RRB), Has Released The Official Notification On The Official Website For The Recruitment Of Group-D (Level-1) Posts Across Various Railway Zones In India. RRB Application Form Last Date 02 March 2026. Candidates Can Apply Before Last Date. The Minimum Age Required Is 18 Years & The Maximum Age Is 33 Years As On 01 January 2026 Candidates Can Also Check All Details Of RRB Group-D Recruitment 2026. (Advt. No. CEN 09/2025)",
+      "table_header": {
+        "red": "Railway RRB Group D Online Form 2026 - Start",
+        "green": "Railway RRB Group-D (Level-1) Examination 2026 : Short Details",
+        "blue_text": "SarkariResult6.com",
+        "blue_link": "https://sarkariresult6.com/"
+      },
+      "left_column_title": "Important Dates",
+      "right_column_title": "Application Fee",
+      "age_limit_title": "RRB Group-D Notification 2026 : Age Limits As On 01 January 2026",
+      "total_posts": "22195",
+      "vacancy_title": "",
+      "eligibility_title": " RRB Group D Various Posts in Level 1 Recruitment 2026 : Eligibility Criteria ",
+      "exam_pattern_title": "",
+      "marking_scheme_title": "",
+      "mode_selection_title": " Railway RRB Group-D (Level-1) Recruitment 2026 : Mode Of Selection ",
+      "how_to_title": "How To Fill Railway RRB Group-D (Level-1) Online Form 2026",
+      "faq_title": " Railway RRB Group-D (Level-1) Recruitment 2026: Important Question ",
+      "important_links_title": "SOME USEFUL IMPORTANT LINKS",
+      "important_dates": "Notification Date : 30 January 2026\r\nOnline Apply Start Date : 31 January 2026\r\nOnline Apply Last Date : 02 March 2026\r\nLast Date For Fee Payment : 04 March 2026\r\nCorrection Date : 05 - 14 March 2026\r\nExam Date : Notify Later\r\nAdmit Card : Before Exam\r\nResult Date : Will Be Updated Here Soon\r\nCandidates are advised to confirm from the RRB official website.",
+      "right_column_details": "For General, OBC, : ₹ 500/-\r\nFor SC/ ST/ EBC / Female / Transgender : ₹ 250/-\r\nRefund Amount (On Appearing For CBT)\r\nFor General, OBC, : ₹ 400/-\r\nFor SC/ ST/ EBC / Female / Transgender : ₹ 250/-\r\nPayment Mode (Online): You can make the payment using the following methods:\r\nDebit Card\r\nCredit Card\r\nInternet Banking\r\nIMPS\r\nCash Card / Mobile Wallet",
+      "age_limit": "Minimum Age : 18 Years \r\nMaximum Age : 33 Years \r\nRRB provides age relaxation for the Group D Various Posts in Level 1 position as per their regulations.",
+      "vacancy_details": "",
+      "eligibility": "Candidates who have completed Class 10 (High School) from a school recognized by NCVT/SCVT or hold a National Apprenticeship Certificate (NAC) issued by NCVT are eligible to apply for the RRB Group D Recruitment Exam.",
+      "exam_pattern": "",
+      "marking_scheme": "",
+      "mode_of_selection": "Computer Based Test (CBT-1)\r\nPhysical Efficiency Test\r\nDocument Verification\r\nMedical Examination",
+      "how_to_steps": "Interested candidates who wish to apply for the RRB post can submit their application online before 02 March 2026.\r\nUse the click here link provided below under important link section to apply directly.\r\nAlternatively, visit the official website of RRB to complete the application process online.\r\nMake sure to complete the application before the deadline 02 March 2026.\r\nNote – छात्रो से ये अनुरोध किया जाता है की वो अपना फॉर्म भरने से पहले Official Notification को ध्यान से जरूर पढे उसके बाद ही अपना फॉर्म भरे । (Last Date, Age Limit, & Education Qualification)",
+      "faq": "Question: When will the online application for Railway RRB Group-D (Level-1) Recruitment 2026 start?\r\nAnswer: The online application for this recruitment has started on 31 January 2026.\r\nQuestion: What is the last date to apply for Railway RRB Group-D (Level-1) Recruitment 2026?\r\nAnswer: The last date to submit the online application is 02 March 2026.\r\nQuestion: What is the age limit for Railway RRB Group-D (Level-1) Recruitment 2026?\r\nAnswer: 18 - 33 Years as on 01 January 2026.\r\nQuestion: What is the eligibility for Railway RRB Group-D (Level-1) Recruitment 2026?\r\nAnswer: Candidates must have a Class 10th Passed in the relevant field.\r\nQuestion: What is the official website for RRB?\r\nAnswer: The official website for RRB is https://indianrailways.gov.in/.",
+      "apply_link": "https://sarkariresult6.com/",
+      "notification_pdf": "https://sarkariresult6.com/",
+      "official_website": "https://sarkariresult6.com/",
+      "download_link": "https://sarkariresult6.com/",
+      "objection_link": "https://sarkariresult6.com/"
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/jobs/381",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/jobs"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/types/jobs"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/media?parent=381"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "department",
+          "embeddable": true,
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/department?post=381"
+        },
+        {
+          "taxonomy": "state",
+          "embeddable": true,
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/state?post=381"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 372,
+    "date": "2026-02-25T09:21:11",
+    "date_gmt": "2026-02-25T09:21:11",
+    "guid": {
+      "rendered": "https://api.sarkariresult6.com/?post_type=jobs&#038;p=372"
+    },
+    "modified": "2026-02-25T10:16:28",
+    "modified_gmt": "2026-02-25T10:16:28",
+    "slug": "rrb-ntpc-recruitment-2026",
+    "status": "publish",
+    "type": "jobs",
+    "link": "https://api.sarkariresult6.com/latest-jobs/rrb-ntpc-recruitment-2026/",
+    "title": {
+      "rendered": "RRB NTPC Recruitment 2026"
+    },
+    "content": {
+      "rendered": "",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "",
+      "protected": false
+    },
+    "featured_media": 0,
+    "template": "",
+    "department": [],
+    "state": [],
+    "class_list": [
+      "post-372",
+      "jobs",
+      "type-jobs",
+      "status-publish",
+      "hentry"
+    ],
+    "acf": {
+      "short_information": "Railway Recruitment Board RRB has released NTPC Recruitment 2026 notification. Candidates can check eligibility, age limit, vacancy details and apply online.",
+      "table_header": {
+        "red": "JPSC Drug Inspector Online Form 2026",
+        "green": "JPSC Drug Inspector Examination 2026 : Short Details",
+        "blue_text": "SarkariResult6.Com",
+        "blue_link": "https://www.sarkariresult6.com/"
+      },
+      "left_column_title": "Important Dates",
+      "right_column_title": "Application Fee",
+      "age_limit_title": "JPSC Drug Inspector Notification 2026 : Age Limits As On 01 August 2024",
+      "total_posts": "30",
+      "vacancy_title": "JPSC Drug Inspector Recruitment 2026 : Vacancy Details",
+      "eligibility_title": "Eligibility Criteria",
+      "exam_pattern_title": "",
+      "marking_scheme_title": "",
+      "mode_selection_title": " JPSC Drug Inspector Recruitment 2026 : Mode Of Selection ",
+      "how_to_title": " How To Fill JPSC Drug Inspector Online Form 2026 ",
+      "faq_title": "JPSC Drug Inspector Online Form 2026 : Important Question ",
+      "important_links_title": "SOME USEFUL IMPORTANT LINKS",
+      "important_dates": "Application Fee General : 500/-\r\nApplication Fee SC/ST : 250/-\r\nPayment Mode : Online",
+      "right_column_details": "Application Fee General : 500/-\r\nApplication Fee SC/ST : 250/-\r\nPayment Mode : Online",
+      "age_limit": "Minimum Age : 18 Years\r\nMaximum Age : 36 Years\r\nAge Relaxation : As Per Government Rules",
+      "vacancy_details": "Clerk : 5000\r\nStation Master : 3000\r\nGoods Guard : 2000\r\nJunior Assistant : 1500",
+      "eligibility": "Candidates must have a Bachelor’s degree in Pharmacy, Pharmaceutical Sciences, or Medicine with Clinical Pharmacology or Microbiology from any recognized university in India. Experience requirements, if any, should be checked in the official notification.",
+      "exam_pattern": "CBT Stage 1\r\nCBT Stage 2\r\nDocument Verification\r\nMedical Examination",
+      "marking_scheme": "",
+      "mode_of_selection": "Written Exam\r\nInterview",
+      "how_to_steps": "Interested candidates who wish to apply for the JPSC post can submit their application online before 18 February 2026.\r\nUse the click here link provided below under important link section to apply directly.\r\nAlternatively, visit the official website of JPSC to complete the application process online.\r\nMake sure to complete the application before the deadline 18 February 2026.\r\nNote – छात्रो से ये अनुरोध किया जाता है की वो अपना फॉर्म भरने से पहले Official Notification को ध्यान से जरूर पढे उसके बाद ही अपना फॉर्म भरे । (Last Date, Age Limit, & Education Qualification)",
+      "faq": "Question: When will the online application for JPSC Drug Inspector Recruitment 2026 Start?\r\nAnswer: The online application for this recruitment has started on 29 January 2026.\r\nQuestion: What is the last date for online application for JPSC Drug Inspector Online Form 2026?\r\nAnswer: The last date for online application Form is 18 February 2026.\r\nQuestion: What is the age limit for JPSC Drug Inspector Bharti 2026?\r\nAnswer: The age limit for JPSC Drug Inspector Bharti 2026 is as follows:\r\nThe Minimum age is 21 Years & The Maximum Age Is 40 Years as on 01 August 2024.\r\nQuestion: What is the eligibility for JPSC Drug Inspector Vacancy 2026?\r\nAnswer: The eligibility for JPSC Drug Inspector Bharti 2026 is as follows post wise.\r\nQuestion: What is the official website for JPSC?\r\nAnswer: The official website for JPSC is http://www.jpsc.gov.in/",
+      "apply_link": "",
+      "notification_pdf": "",
+      "official_website": "",
+      "download_link": "",
+      "objection_link": ""
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/jobs/372",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/jobs"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/types/jobs"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/media?parent=372"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "department",
+          "embeddable": true,
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/department?post=372"
+        },
+        {
+          "taxonomy": "state",
+          "embeddable": true,
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/state?post=372"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

@@ -40,6 +40,8 @@ html, body {
     padding-right: 20px;
   }
 }
-
+a:hover {
+  text-decoration: underline;
+}
 
 

@@ -16,7 +16,9 @@ export default function LatestJobs({ data = [] }) {
           <li key={id}>
             <Link
               href={`/latest-jobs/${slug}`}
-              className="text-blue-700 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-700 hover:underline visited:text-purple-700"
               prefetch={false}
             >
               {title}
@@ -32,7 +34,7 @@ export default function LatestJobs({ data = [] }) {
       <div className="text-right px-3 py-2 border-t">
         <Link
           href="/latest-jobs"
-          className="text-blue-700 font-semibold hover:underline"
+          className="text-blue-700 font-semibold hover:underline "
           prefetch={false}
         >
           View More →

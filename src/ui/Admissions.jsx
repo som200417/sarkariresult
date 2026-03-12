@@ -35,7 +35,9 @@ export default function Admissions({ admissions = [], page = 1, totalPages = 1 }
             >
               <Link
                 href={`/admission/${item.slug}`}
-                className="text-blue-700 hover:underline font-medium"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-700 hover:underline font-medium visited:text-purple-700"
               >
                 {item.title.rendered}
               </Link>

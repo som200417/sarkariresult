@@ -33,7 +33,9 @@ export default function AnswerKeys({ keys = [] }) {
                   <Link
                     href={`/answer-key/${item.slug}`}
                     prefetch={false}
-                    className="text-blue-700 hover:underline"
+                    target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-700 hover:underline visited:text-purple-700"
                   >
                     {item.title.rendered}
                   </Link>
