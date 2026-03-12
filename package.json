@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
     "start": "next start",
     "lint": "eslint",
-   "generate:all": "node scripts/generate-all-json.js"
+    "generate-json": "node scripts/generate-all-json.js",
+    "build": "npm run generate-json && next build"
   },
   "dependencies": {
     "next": "16.1.6",
