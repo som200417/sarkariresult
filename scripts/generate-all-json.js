@@ -25,7 +25,10 @@ function saveJSON(file, data) {
 
 /* Fetch helper */
 async function fetchData(url) {
-  const res = await fetch(url);
+
+  const res = await fetch(url, {
+    cache: "no-store"
+  });
 
   if (!res.ok) {
     throw new Error(`API error ${res.status} → ${url}`);
@@ -36,19 +39,29 @@ async function fetchData(url) {
 
 /* Home JSON */
 async function generateHome() {
+
+  console.log("🏠 Generating home.json");
+
   try {
+
     const data = await fetchData(`${BASE_V1}/home`);
+
     saveJSON("home", data);
+
   } catch (err) {
+
     console.error("❌ home.json failed:", err);
+
   }
+
 }
 
 /* Category JSON (WordPress REST) */
 async function generateCategory(endpoint, file) {
+
   try {
 
-    const data = await fetchData(`${BASE_WP}/${endpoint}?per_page=100`);
+    const data = await fetchData(`${BASE_WP}/${endpoint}?per_page=100&_=${Date.now()}`);
 
     saveJSON(file, data);
 
@@ -57,6 +70,7 @@ async function generateCategory(endpoint, file) {
     console.error(`❌ ${file}.json failed`, err);
 
   }
+
 }
 
 /* Generate all CPT JSON */
@@ -85,15 +99,17 @@ async function generateCategories() {
 /* Combined pages */
 async function generateCombinedPages() {
 
-  console.log("📄 Generating blog pages...");
+  console.log("📄 Generating combined pages...");
 
   const tasks = [];
 
   for (let page = 1; page <= MAX_PAGES; page++) {
 
+    const url = `${BASE_V1}/combined?per_page=${PER_PAGE}&page=${page}&_=${Date.now()}`;
+
     tasks.push(
 
-      fetchData(`${BASE_V1}/combined?per_page=${PER_PAGE}&page=${page}`)
+      fetchData(url)
         .then(data => saveJSON(`combined-page-${page}`, data))
         .catch(err => console.error(`❌ combined-page-${page} failed`, err))
 
