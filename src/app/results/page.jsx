@@ -55,7 +55,9 @@ export default async function Page({ searchParams }) {
   const { results, totalPages } = await getResults(page);
 
   return (
+
     <>
+     
       <Results results={results} />
 
       <ResultsPagination page={page} totalPages={totalPages} />

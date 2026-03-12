@@ -14,9 +14,6 @@ export default function Navbar() {
   const router = useRouter();
   const controllerRef = useRef(null);
 
-  /* =====================
-     SEARCH SUBMIT
-  ===================== */
   const handleSearch = (e) => {
     e.preventDefault();
     if (!query.trim()) return;
@@ -27,9 +24,6 @@ export default function Navbar() {
     setSearchOpen(false);
   };
 
-  /* =====================
-     LIVE SEARCH
-  ===================== */
   useEffect(() => {
     if (query.length < 2) {
       setResults([]);
@@ -55,9 +49,7 @@ export default function Navbar() {
 
         setResults(data);
       } catch (err) {
-        if (err.name !== "AbortError") {
-          console.error(err);
-        }
+        if (err.name !== "AbortError") console.error(err);
       } finally {
         setLoading(false);
       }
@@ -68,6 +60,7 @@ export default function Navbar() {
 
   return (
     <header className="site-container rounded-md">
+
       {/* RED HEADER */}
       <div className="bg-red-700 text-white text-center py-8 md:py-12">
         <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold tracking-wide">
@@ -78,12 +71,12 @@ export default function Navbar() {
         </p>
       </div>
 
-      {/* BLUE NAVBAR */}
+      {/* NAVBAR */}
       <div className="bg-blue-900">
         <div className="flex items-center justify-between px-4 py-2">
 
-          {/* DESKTOP MENU */}
-          <ul className="hidden lg:flex text-white text-sm lg:text-base font-semibold">
+          {/* TABLET + DESKTOP MENU */}
+          <ul className="hidden md:flex whitespace-nowrap text-white text-sm lg:text-base font-semibold">
             <NavItem href="/">Home</NavItem>
             <NavItem href="/latest-jobs">Latest Jobs</NavItem>
             <NavItem href="/results">Results</NavItem>
@@ -93,8 +86,8 @@ export default function Navbar() {
             <NavItem href="/admission">Admission</NavItem>
           </ul>
 
-          {/* DESKTOP SEARCH */}
-          <div className="hidden lg:block relative w-64">
+          {/* TABLET + DESKTOP SEARCH */}
+          <div className="hidden md:block relative w-64">
             <form onSubmit={handleSearch}>
               <input
                 type="text"
@@ -111,7 +104,7 @@ export default function Navbar() {
           </div>
 
           {/* MOBILE CONTROLS */}
-          <div className="flex items-center justify-between w-full lg:hidden">
+          <div className="flex items-center justify-between w-full md:hidden">
             <button
               onClick={() => setMenuOpen((v) => !v)}
               className="text-white text-2xl p-2"
@@ -130,7 +123,7 @@ export default function Navbar() {
 
         {/* MOBILE SEARCH */}
         {searchOpen && (
-          <div className="lg:hidden px-4 pb-3 relative">
+          <div className="md:hidden px-4 pb-3 relative">
             <form onSubmit={handleSearch}>
               <input
                 type="text"
@@ -149,7 +142,7 @@ export default function Navbar() {
 
         {/* MOBILE MENU */}
         {menuOpen && (
-          <ul className="lg:hidden border-t border-blue-800 text-white text-sm font-semibold">
+          <ul className="md:hidden border-t border-blue-800 text-white text-sm font-semibold bg-blue-900">
             <MobileNavItem href="/" onClick={() => setMenuOpen(false)}>Home</MobileNavItem>
             <MobileNavItem href="/latest-jobs" onClick={() => setMenuOpen(false)}>Latest Jobs</MobileNavItem>
             <MobileNavItem href="/results" onClick={() => setMenuOpen(false)}>Results</MobileNavItem>
@@ -167,22 +160,16 @@ export default function Navbar() {
 /* SEARCH DROPDOWN */
 
 function SearchDropdown({ loading, results }) {
+
   const mapRoute = (type, slug) => {
     switch (type) {
-      case "jobs":
-        return `/latest-jobs/${slug}`;
-      case "admit-card":
-        return `/admit-card/${slug}`;
-      case "answer_keys":
-        return `/answer-key/${slug}`;
-      case "documents":
-        return `/document/${slug}`;
-      case "admissions":
-        return `/admission/${slug}`;
-      case "results":
-        return `/results/${slug}`;
-      default:
-        return "/";
+      case "jobs": return `/latest-jobs/${slug}`;
+      case "admit-card": return `/admit-card/${slug}`;
+      case "answer_keys": return `/answer-key/${slug}`;
+      case "documents": return `/document/${slug}`;
+      case "admissions": return `/admission/${slug}`;
+      case "results": return `/results/${slug}`;
+      default: return "/";
     }
   };
 
@@ -204,6 +191,7 @@ function SearchDropdown({ loading, results }) {
       )}
 
       {results.map((item) => {
+
         const slug = extractSlug(item.url);
         const path = mapRoute(item.subtype, slug);
 
@@ -227,6 +215,7 @@ function SearchDropdown({ loading, results }) {
 /* NAV ITEMS */
 
 function NavItem({ href, children }) {
+
   const pathname = usePathname();
   const isActive = pathname === href;
 
@@ -245,6 +234,7 @@ function NavItem({ href, children }) {
 }
 
 function MobileNavItem({ href, children, onClick }) {
+
   const pathname = usePathname();
   const isActive = pathname === href;
 
