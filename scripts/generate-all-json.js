@@ -18,9 +18,21 @@ if (!fs.existsSync(DATA_DIR)) {
 
 /* Save JSON */
 function saveJSON(file, data) {
+
   const filePath = path.join(DATA_DIR, `${file}.json`);
+
+  // old file delete
+  if (fs.existsSync(filePath)) {
+    fs.unlinkSync(filePath);
+  }
+
+  // debug timestamp
+  data.generated_at = new Date();
+
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+
   console.log(`✅ ${file}.json generated`);
+
 }
 
 /* Fetch helper */
