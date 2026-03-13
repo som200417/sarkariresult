@@ -16,7 +16,6 @@ if (!fs.existsSync(DATA_DIR)) {
   fs.mkdirSync(DATA_DIR, { recursive: true });
 }
 
-/* Save JSON */
 function saveJSON(file, data) {
 
   const filePath = path.join(DATA_DIR, `${file}.json`);
@@ -25,12 +24,7 @@ function saveJSON(file, data) {
     fs.unlinkSync(filePath);
   }
 
-  const finalData = {
-    generated_at: new Date(),
-    data
-  };
-
-  fs.writeFileSync(filePath, JSON.stringify(finalData, null, 2));
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 
   console.log(`✅ ${file}.json generated`);
 
