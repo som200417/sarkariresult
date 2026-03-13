@@ -20,7 +20,7 @@ if (!fs.existsSync(DATA_DIR)) {
 function saveJSON(file, data) {
 
   const filePath = path.join(DATA_DIR, `${file}.json`);
-
+data._generated = Date.now(); // force change
   // old file delete
   if (fs.existsSync(filePath)) {
     fs.unlinkSync(filePath);
