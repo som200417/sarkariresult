@@ -23,15 +23,38 @@ export const metadata = {
     card: "summary_large_image",
   },
 };
-
 async function getHomeData() {
-   const res = await fetch(
-    "https://www.sarkariresult6.com/data/home.json",
-    { cache: "no-store" }
-  );
 
-  return res.json();
+  try {
+
+    const filePath = path.join(
+      process.cwd(),
+      "public/data/home.json"
+    );
+
+    const file = await fs.readFile(filePath, "utf8");
+
+    return JSON.parse(file);
+
+  } catch (err) {
+
+    console.error("Home JSON error:", err);
+
+    return {
+      latest_jobs: [],
+      results: [],
+      admit_cards: [],
+      answer_keys: [],
+      documents: [],
+      admissions: [],
+      highlights: [],
+      breaking_news: []
+    };
+
+  }
+
 }
+
 
 
 export default async function Page() {
