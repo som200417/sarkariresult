@@ -2,7 +2,7 @@ import Home from "@/ui/Home";
 import fs from "fs/promises";
 import path from "path";
 
-export const revalidate = 60;
+export const revalidate = 0;
 
 export const metadata = {
   title: "Sarkari Result 2026 – Latest Jobs, Admit Card, Results",
