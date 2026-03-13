@@ -20,16 +20,17 @@ if (!fs.existsSync(DATA_DIR)) {
 function saveJSON(file, data) {
 
   const filePath = path.join(DATA_DIR, `${file}.json`);
-data._generated = Date.now(); // force change
-  // old file delete
+
   if (fs.existsSync(filePath)) {
     fs.unlinkSync(filePath);
   }
 
-  // debug timestamp
-  data.generated_at = new Date();
+  const finalData = {
+    generated_at: new Date(),
+    data
+  };
 
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+  fs.writeFileSync(filePath, JSON.stringify(finalData, null, 2));
 
   console.log(`✅ ${file}.json generated`);
 
@@ -49,31 +50,14 @@ async function fetchData(url) {
   return res.json();
 }
 
-/* Home JSON */
-async function generateHome() {
-
-  console.log("🏠 Generating home.json");
-
-  try {
-
-    const data = await fetchData(`${BASE_V1}/home`);
-
-    saveJSON("home", data);
-
-  } catch (err) {
-
-    console.error("❌ home.json failed:", err);
-
-  }
-
-}
-
 /* Category JSON (WordPress REST) */
 async function generateCategory(endpoint, file) {
 
   try {
 
-    const data = await fetchData(`${BASE_WP}/${endpoint}?per_page=100&_=${Date.now()}`);
+    const data = await fetchData(
+      `${BASE_WP}/${endpoint}?per_page=100&_=${Date.now()}`
+    );
 
     saveJSON(file, data);
 
@@ -93,15 +77,10 @@ async function generateCategories() {
   await Promise.all([
 
     generateCategory("jobs", "latest-jobs"),
-
     generateCategory("results", "results"),
-
     generateCategory("admit-card", "admit-cards"),
-
     generateCategory("answer_keys", "answer-keys"),
-
     generateCategory("documents", "documents"),
-
     generateCategory("admissions", "admissions")
 
   ]);
@@ -123,7 +102,9 @@ async function generateCombinedPages() {
 
       fetchData(url)
         .then(data => saveJSON(`combined-page-${page}`, data))
-        .catch(err => console.error(`❌ combined-page-${page} failed`, err))
+        .catch(err =>
+          console.error(`❌ combined-page-${page} failed`, err)
+        )
 
     );
 
@@ -133,16 +114,40 @@ async function generateCombinedPages() {
 
 }
 
+/* Home JSON */
+async function generateHome() {
+
+  console.log("🏠 Generating home.json");
+
+  try {
+
+    const data = await fetchData(
+      `${BASE_V1}/home?_=${Date.now()}`
+    );
+
+    saveJSON("home", data);
+
+  } catch (err) {
+
+    console.error("❌ home.json failed:", err);
+
+  }
+
+}
+
 /* Run generator */
 async function generateAll() {
 
   console.log("🚀 Generating JSON cache...");
 
-  await generateHome();
-
+  /* categories first */
   await generateCategories();
 
+  /* combined pages */
   await generateCombinedPages();
+
+  /* home LAST */
+  await generateHome();
 
   console.log("🎉 JSON cache updated successfully");
 
