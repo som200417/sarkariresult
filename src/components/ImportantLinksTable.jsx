@@ -1,12 +1,16 @@
 export default function ImportantLinksTable({ title, acf }) {
 
-  const links = acf.important_links
-    ?.split("\n")
-    .map(line => {
-      const [label, url] = line.split("|").map(item => item.trim());
+  const rawLinks = acf?.important_links || "";
+
+  const links = rawLinks
+    .split("\n")
+    .map((line) => {
+      const [label, url] = line.split("|").map((item) => item?.trim());
       return { label, url };
     })
-    .filter(link => link.label && link.url);
+    .filter((link) => link.label && link.url);
+
+  if (!links.length) return null;
 
   return (
     <div className="my-6">
@@ -21,7 +25,7 @@ export default function ImportantLinksTable({ title, acf }) {
         </thead>
 
         <tbody>
-          {links?.map((link, idx) => (
+          {links.map((link, idx) => (
             <tr key={idx}>
               <td className="border border-black p-2 font-semibold w-1/2">
                 {link.label}
