@@ -8,7 +8,7 @@ export const metadata = {
   description:
     "Latest Government Jobs, Results, Admit Card, Answer Key, Admission",
   icons: {
-    icon: "logo.png",
+    icon: "/logo.png",
   },
 };
 
