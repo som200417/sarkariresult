@@ -1,37 +1,58 @@
-export default function FAQTable({ title, faq }) {
-  if (!faq) return null;
+export default function FAQTable({ title, acf }) {
+
+  const raw = acf?.faq || "";
+
+  const lines = raw
+    .split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(Boolean);
 
   const rows = [];
-  for (let i = 1; i <= 10; i++) {
-    const q = faq[`question_${i}`];
-    const a = faq[`answer_${i}`];
-    if (q && a) rows.push({ q, a });
-  }
+  let question = "";
 
-  if (rows.length === 0) return null;
+  lines.forEach((line) => {
+
+    if (line.toLowerCase().startsWith("question:")) {
+      question = line.replace(/question:/i, "").trim();
+    }
+
+    if (line.toLowerCase().startsWith("answer:")) {
+      const answer = line.replace(/answer:/i, "").trim();
+
+      rows.push({
+        question,
+        answer
+      });
+    }
+
+  });
+
+  if (!rows.length) return null;
 
   return (
     <div className="my-6">
       <table className="w-full border border-black text-sm">
+
         <thead>
           <tr className="bg-blue-900 text-white text-center font-bold">
-            <th colSpan="2" className="border border-black p-2">
-              {title}
+            <th className="border border-black p-2">
+              {title || "Important Question"}
             </th>
           </tr>
         </thead>
+
         <tbody>
-          {rows.map((row, idx) => (
-            <tr key={idx}>
-              <td className="border border-black p-2 font-semibold w-1/3">
-                {row.q}
-              </td>
+          {rows.map((row, i) => (
+            <tr key={i}>
               <td className="border border-black p-2">
-                {row.a}
+                • <strong>Question:</strong> {row.question}
+                <br />
+                • <strong>Answer:</strong> {row.answer}
               </td>
             </tr>
           ))}
         </tbody>
+
       </table>
     </div>
   );

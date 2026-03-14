@@ -8,28 +8,40 @@ export function TwoColumnTable({
   rightItems = [],
 }) {
   const highlightLastDate = (text) => {
-    if (!text) return text;
+  if (!text) return text;
 
-    if (text.toLowerCase().includes("last")) {
-      return <span className="text-red-600 font-semibold">{text}</span>;
-    }
+  // Admin highlight control
+  if (text.includes("[highlight]")) {
+    const cleanText = text
+      .replace("[highlight]", "")
+      .replace("[/highlight]", "");
 
-    return text;
-  };
+    return (
+      <span className="bg-yellow-300 font-semibold px-1">
+        {cleanText}
+      </span>
+    );
+  }
+
+  // Last date red highlight
+  if (text.toLowerCase().includes("last")) {
+    return <span className="text-red-600 font-semibold">{text}</span>;
+  }
+
+  return text;
+};
 
   const renderList = (items = []) => (
     <ul className="list-disc pl-4 space-y-1">
-      {items.map(([label, value], i) => (
-        <li key={i}>
-          {label && <b>{label}</b>}
-          {value && (
-            <>
-              {" : "}
-              {highlightLastDate(value)}
-            </>
-          )}
-        </li>
-      ))}
+    {items.map(([label, value], i) => {
+  const fullText = `${label} : ${value}`;
+
+  return (
+    <li key={i}>
+      {highlightLastDate(fullText)}
+    </li>
+  );
+})}
     </ul>
   );
 

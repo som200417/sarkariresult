@@ -4,6 +4,7 @@ import { SingleTable } from "./SingleTable";
 import VacancyTable from "./VacancyTable";
 import ImportantLinksTable from "./ImportantLinksTable";
 import SimpleTable from "./SimpleTable";
+import FAQTable from "./FAQTable";
 
 export default function UniversalExamSingle({ post }) {
   const acf = post?.acf ?? {};
@@ -121,10 +122,10 @@ export default function UniversalExamSingle({ post }) {
 
       {/* FAQ */}
       {acf.faq && (
-        <SimpleListTable
-          title={getTitle(acf.faq_title, "Important Question")}
-          content={acf.faq}
-        />
+       <FAQTable 
+  title={post.acf.faq_title || "Important Question"} 
+  acf={post.acf} 
+/>
       )}
 
       {/* IMPORTANT LINKS */}
