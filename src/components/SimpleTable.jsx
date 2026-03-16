@@ -1,5 +1,7 @@
-export default function SimpleTable({ title, rows }) {
-  if (!rows || rows.length === 0) return null;
+import { formatText } from "@/utils/formatText";
+
+export default function SimpleTable({ title, rows = [] }) {
+  if (!Array.isArray(rows) || rows.length === 0) return null;
 
   return (
     <div className="my-8">
@@ -7,24 +9,27 @@ export default function SimpleTable({ title, rows }) {
         <thead>
           <tr className="bg-[#6b0035] text-white font-bold text-center">
             <th className="border border-black p-2">
-              {title}
+              {formatText(title)}
             </th>
           </tr>
         </thead>
+
         <tbody>
           <tr>
             <td className="p-3">
               <ul className="list-disc list-inside space-y-1">
                 {rows.map(([label, value], index) => (
                   <li key={index}>
-                    {label}
-                    {value && ` : ${value}`}
+                    {formatText(label)}
+                    {value && ` : `}
+                    {value && formatText(value)}
                   </li>
                 ))}
               </ul>
             </td>
           </tr>
         </tbody>
+
       </table>
     </div>
   );

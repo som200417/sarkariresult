@@ -1,5 +1,7 @@
-export default function VacancyTable({ title, vacancies }) {
-  if (!vacancies || vacancies.length === 0) return null;
+import { formatText } from "@/utils/formatText";
+
+export default function VacancyTable({ title, vacancies = [] }) {
+  if (!Array.isArray(vacancies) || vacancies.length === 0) return null;
 
   return (
     <div className="my-6">
@@ -7,9 +9,10 @@ export default function VacancyTable({ title, vacancies }) {
         <thead>
           <tr className="bg-[#6b0035] text-white text-center font-bold">
             <th colSpan="2" className="border border-black p-2">
-              {title}
+              {formatText(title)}
             </th>
           </tr>
+
           <tr className="bg-gray-200 font-bold text-center">
             <th className="border border-black p-2">Post Name</th>
             <th className="border border-black p-2">No. of Post</th>
@@ -20,10 +23,11 @@ export default function VacancyTable({ title, vacancies }) {
           {vacancies.map((row, index) => (
             <tr key={index} className="text-center">
               <td className="border border-black p-2 text-left">
-                {row.post_name}
+                {formatText(row?.post_name)}
               </td>
+
               <td className="border border-black p-2 font-semibold">
-                {row.post_count}
+                {formatText(row?.post_count)}
               </td>
             </tr>
           ))}

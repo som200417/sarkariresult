@@ -5,6 +5,7 @@ import VacancyTable from "./VacancyTable";
 import ImportantLinksTable from "./ImportantLinksTable";
 import SimpleTable from "./SimpleTable";
 import FAQTable from "./FAQTable";
+import { formatText } from "@/utils/formatText";
 
 export default function UniversalExamSingle({ post }) {
   const acf = post?.acf ?? {};
@@ -33,17 +34,16 @@ export default function UniversalExamSingle({ post }) {
     <div className="site-container my-6">
 
       {/* SHORT INFORMATION */}
-      {acf.short_information && (
-        <div className="my-4 border-l-4 border-[#6b0035] bg-gray-50 p-4">
-          <p className="text-sm leading-6">
-            <span className="font-bold text-[#6b0035]">
-              <a href="/">Sarkariresult6.com :</a>
-            </span>{" "}
-            {acf.short_information}
-          </p>
-        </div>
-      )}
-
+     {acf.short_information && (
+  <div className="my-4 border-l-4 border-[#6b0035] bg-gray-50 p-4">
+    <p className="text-sm leading-6">
+      <span className="font-bold text-[#6b0035]">
+        <a href="/">Sarkariresult6.com :</a>
+      </span>{" "}
+      {formatText(acf.short_information)}
+    </p>
+  </div>
+)}
       {/* IMPORTANT DATES + RIGHT COLUMN */}
       {(importantDates.length > 0 || rightDetails.length > 0) && (
         <TwoColumnTable
@@ -157,21 +157,25 @@ function SimpleListTable({ title, content }) {
         <thead>
           <tr>
             <th className="border border-black p-2 bg-blue-900 text-white text-center font-bold">
-              {title}
+              {formatText(title)}
             </th>
           </tr>
         </thead>
+
         <tbody>
           <tr>
             <td className="p-3">
               <ul className="list-disc list-inside space-y-1">
                 {list.map((item, index) => (
-                  <li key={index}>{item}</li>
+                  <li key={index}>
+                    {formatText(item)}
+                  </li>
                 ))}
               </ul>
             </td>
           </tr>
         </tbody>
+
       </table>
     </div>
   );

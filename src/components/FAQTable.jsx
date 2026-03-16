@@ -1,3 +1,5 @@
+import { formatText } from "@/utils/formatText";
+
 export default function FAQTable({ title, acf }) {
 
   const raw = acf?.faq || "";
@@ -36,7 +38,7 @@ export default function FAQTable({ title, acf }) {
         <thead>
           <tr className="bg-blue-900 text-white text-center font-bold">
             <th className="border border-black p-2">
-              {title || "Important Question"}
+              {formatText(title || "Important Question")}
             </th>
           </tr>
         </thead>
@@ -45,9 +47,9 @@ export default function FAQTable({ title, acf }) {
           {rows.map((row, i) => (
             <tr key={i}>
               <td className="border border-black p-2">
-                • <strong>Question:</strong> {row.question}
+                • <strong>Question:</strong> {formatText(row.question)}
                 <br />
-                • <strong>Answer:</strong> {row.answer}
+                • <strong>Answer:</strong> {formatText(row.answer)}
               </td>
             </tr>
           ))}
