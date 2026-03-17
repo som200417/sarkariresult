@@ -13,7 +13,10 @@ export const formatText = (text) => {
     /\[red\](.*?)\[\/red\]/gi,
     '<span class="text-red-600 font-semibold">$1</span>'
   );
-
+ output = output.replace(
+  /\[blue\](.*?)\[\/blue\]/gi,
+  '<span class="text-blue-700 font-semibold">$1</span>'
+);
   // bold
   output = output.replace(
     /\*\*(.*?)\*\*/g,

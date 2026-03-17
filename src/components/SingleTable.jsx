@@ -1,43 +1,13 @@
+import { formatText } from "@/utils/formatText";
 export function SingleTable({ title, rows, rightValue }) {
-
-  const formatText = (text) => {
-    if (!text) return text;
-
-    // Highlight
-    if (text.toLowerCase().includes("[highlight]")) {
-      const clean = text
-        .replace(/\[highlight\]/gi, "")
-        .replace(/\[\/highlight\]/gi, "");
-
-      return (
-        <span className="bg-yellow-300 font-semibold px-1">
-          {clean}
-        </span>
-      );
-    }
-
-    // Red text
-    if (text.toLowerCase().includes("[red]")) {
-      const clean = text
-        .replace(/\[red\]/gi, "")
-        .replace(/\[\/red\]/gi, "");
-
-      return (
-        <span className="text-red-600 font-semibold">
-          {clean}
-        </span>
-      );
-    }
-
-    return text;
-  };
-
   return (
     <table className="w-full border border-black my-6 text-sm">
       <thead>
         <tr className="bg-green-700 text-white font-bold">
-          <th className="border border-black p-2">{title}</th>
-          <th className="border border-black p-2">Total Post</th>
+          <th className="border border-black p-2">
+            {formatText(title)}
+          </th>
+          <th className="border border-black p-2 bg-orange-600">Total Post</th>
         </tr>
       </thead>
 

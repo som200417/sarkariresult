@@ -5,7 +5,7 @@ export default function ImportantLinksTable({ title, acf }) {
   const links = rawLinks
     .split("\n")
     .map((line) => {
-      const [label, url] = line.split("|").map((item) => item?.trim());
+      const [label, url] = line.split(":").map((item) => item?.trim());
       return { label, url };
     })
     .filter((link) => link.label && link.url);
@@ -27,11 +27,11 @@ export default function ImportantLinksTable({ title, acf }) {
         <tbody>
           {links.map((link, idx) => (
             <tr key={idx}>
-              <td className="border border-black p-2 font-semibold w-1/2">
+              <td className="border border-black p-2 font-semibold w-1/2 text-center">
                 {link.label}
               </td>
 
-              <td className="border border-black p-2 text-blue-700">
+              <td className="border border-black p-2 text-blue-700 text-center">
                 <a
                   href={link.url}
                   target="_blank"

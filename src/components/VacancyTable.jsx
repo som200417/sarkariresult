@@ -22,7 +22,7 @@ export default function VacancyTable({ title, vacancies = [] }) {
         <tbody>
           {vacancies.map((row, index) => (
             <tr key={index} className="text-center">
-              <td className="border border-black p-2 text-left">
+              <td className="border border-black p-2 text-center font-semibold">
                 {formatText(row?.post_name)}
               </td>
 

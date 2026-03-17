@@ -119,7 +119,15 @@ export default function UniversalExamSingle({ post }) {
           content={acf.how_to_steps}
         />
       )}
-
+     {/* IMPORTANT LINKS */}
+      <ImportantLinksTable
+        title={getTitle(
+          acf.important_links_title,
+          `${postTitle} : Important Links`
+        )}
+        acf={acf}
+      />
+      
       {/* FAQ */}
       {acf.faq && (
        <FAQTable 
@@ -128,14 +136,7 @@ export default function UniversalExamSingle({ post }) {
 />
       )}
 
-      {/* IMPORTANT LINKS */}
-      <ImportantLinksTable
-        title={getTitle(
-          acf.important_links_title,
-          `${postTitle} : Important Links`
-        )}
-        acf={acf}
-      />
+     
     </div>
   );
 }
