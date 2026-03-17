@@ -3,13 +3,15 @@ export default function ImportantLinksTable({ title, acf }) {
   const rawLinks = acf?.important_links || "";
 
   const links = rawLinks
-    .split("\n")
-    .map((line) => {
-      const [label, url] = line.split(":").map((item) => item?.trim());
-      return { label, url };
-    })
-    .filter((link) => link.label && link.url);
+  .split("\n")
+  .map((line) => {
+    const parts = line.split(":");
+    const label = parts.shift()?.trim();
+    const url = parts.join(":").trim();
 
+    return { label, url };
+  })
+  .filter((link) => link.label && link.url);
   if (!links.length) return null;
 
   return (
