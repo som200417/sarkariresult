@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import UniversalExamSingle from "../components/UniversalExamSingle";
+import BottomSection from "@/components/BottomSection";
 
 export default function ResultDetail({ post }) {
   return (
@@ -115,6 +116,7 @@ export default function ResultDetail({ post }) {
           </Link>
         </div>
       </div>
+        <BottomSection />
     </div>
   );
 }

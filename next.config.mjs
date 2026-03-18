@@ -17,6 +17,13 @@ const nextConfig = {
 
   images: {
     formats: ["image/avif", "image/webp"],
+      remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "api.sarkariresult6.com",
+        pathname: "/wp-content/uploads/**",
+      },
+    ],
   },
 
   compiler: {

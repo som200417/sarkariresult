@@ -34,7 +34,7 @@ export default function DocumentsBox({ data }) {
         {data.map((item) => (
           <li key={item.id}>
             <Link
-              href={`/documents/${item.slug}`}
+              href={`/document/${item.slug}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-700 hover:underline visited:text-purple-700"

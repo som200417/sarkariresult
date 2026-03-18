@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import AdmissionDetail from "@/ui/AdmissionDetail";
-
 const API = "https://api.sarkariresult6.com/wp-json/wp/v2";
 
 
@@ -40,4 +39,5 @@ export default async function AdmissionPage({ params }) {
   if (!post) notFound();
 
   return <AdmissionDetail post={post} />;
+
 }

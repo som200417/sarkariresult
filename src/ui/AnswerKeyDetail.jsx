@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import UniversalExamSingle from "@/components/UniversalExamSingle";
-
+import BottomSection from "@/components/BottomSection";
 export default function AnswerKeyDetail({ post }) {
   return (
     <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-0 py-6">
@@ -117,7 +117,7 @@ export default function AnswerKeyDetail({ post }) {
           </Link>
         </div>
       </div>
-
+            <BottomSection />
     </div>
   );
 }

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import UniversalExamSingle from "../components/UniversalExamSingle";
-
+import BottomSection from "@/components/BottomSection";
 export default function AdmissionDetail({ post }) {
   return (
     <div className="site-container py-6">
@@ -104,7 +104,7 @@ export default function AdmissionDetail({ post }) {
           </Link>
         </div>
       </div>
-
+          <BottomSection />
     </div>
   );
 }

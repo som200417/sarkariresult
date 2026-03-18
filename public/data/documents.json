@@ -1,1 +1,148 @@
-[]
+[
+  {
+    "id": 423,
+    "date": "2026-03-18T15:55:31",
+    "date_gmt": "2026-03-18T15:55:31",
+    "guid": {
+      "rendered": "https://api.sarkariresult6.com/?post_type=documents&#038;p=423"
+    },
+    "modified": "2026-03-18T15:55:31",
+    "modified_gmt": "2026-03-18T15:55:31",
+    "slug": "testing",
+    "status": "publish",
+    "type": "documents",
+    "link": "https://api.sarkariresult6.com/documents/testing/",
+    "title": {
+      "rendered": "testing"
+    },
+    "content": {
+      "rendered": "",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "",
+      "protected": false
+    },
+    "featured_media": 0,
+    "template": "",
+    "class_list": [
+      "post-423",
+      "documents",
+      "type-documents",
+      "status-publish",
+      "hentry"
+    ],
+    "acf": {
+      "short_information": "",
+      "table_header": {
+        "red": "",
+        "green": "",
+        "blue_text": "",
+        "blue_link": ""
+      },
+      "left_column_title": "",
+      "right_column_title": "",
+      "age_limit_title": "",
+      "total_posts": "",
+      "vacancy_title": "",
+      "eligibility_title": "",
+      "exam_pattern_title": "",
+      "marking_scheme_title": "",
+      "mode_selection_title": "",
+      "how_to_title": "",
+      "faq_title": "",
+      "important_links_title": "",
+      "important_dates": "",
+      "right_column_details": "",
+      "age_limit": "",
+      "vacancy_details": "",
+      "physical_table": "",
+      "eligibility": "",
+      "exam_pattern": "",
+      "marking_scheme": "",
+      "mode_of_selection": "",
+      "how_to_steps": "",
+      "faq": "",
+      "important_links": "",
+      "post_image": {
+        "ID": 403,
+        "id": 403,
+        "title": "maxresdefault-2-1024x576",
+        "filename": "maxresdefault-2-1024x576-1.jpg",
+        "filesize": 116319,
+        "url": "https://api.sarkariresult6.com/wp-content/uploads/2026/03/maxresdefault-2-1024x576-1.jpg",
+        "link": "https://api.sarkariresult6.com/documents/testing/maxresdefault-2-1024x576/",
+        "alt": "",
+        "author": "1",
+        "description": "",
+        "caption": "",
+        "name": "maxresdefault-2-1024x576",
+        "status": "inherit",
+        "uploaded_to": 423,
+        "date": "2026-03-17 08:16:19",
+        "modified": "2026-03-18 15:55:31",
+        "menu_order": 0,
+        "mime_type": "image/jpeg",
+        "type": "image",
+        "subtype": "jpeg",
+        "icon": "https://api.sarkariresult6.com/wp-includes/images/media/default.png",
+        "width": 1024,
+        "height": 576,
+        "sizes": {
+          "thumbnail": "https://api.sarkariresult6.com/wp-content/uploads/2026/03/maxresdefault-2-1024x576-1-150x150.jpg",
+          "thumbnail-width": 150,
+          "thumbnail-height": 150,
+          "medium": "https://api.sarkariresult6.com/wp-content/uploads/2026/03/maxresdefault-2-1024x576-1-300x169.jpg",
+          "medium-width": 300,
+          "medium-height": 169,
+          "medium_large": "https://api.sarkariresult6.com/wp-content/uploads/2026/03/maxresdefault-2-1024x576-1-768x432.jpg",
+          "medium_large-width": 768,
+          "medium_large-height": 432,
+          "large": "https://api.sarkariresult6.com/wp-content/uploads/2026/03/maxresdefault-2-1024x576-1.jpg",
+          "large-width": 1024,
+          "large-height": 576,
+          "1536x1536": "https://api.sarkariresult6.com/wp-content/uploads/2026/03/maxresdefault-2-1024x576-1.jpg",
+          "1536x1536-width": 1024,
+          "1536x1536-height": 576,
+          "2048x2048": "https://api.sarkariresult6.com/wp-content/uploads/2026/03/maxresdefault-2-1024x576-1.jpg",
+          "2048x2048-width": 1024,
+          "2048x2048-height": 576
+        }
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/documents/423",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/documents"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/types/documents"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://api.sarkariresult6.com/wp-json/wp/v2/media?parent=423"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import UniversalExamSingle from "../components/UniversalExamSingle";
-
+import BottomSection from "@/components/BottomSection";
 export default function AdmitCardDetail({ post }) {
   return (
     <div className="site-container my-8 max-w-5xl mx-auto px-4 sm:px-5 md:px-6">
@@ -121,7 +121,7 @@ export default function AdmitCardDetail({ post }) {
           </Link>
         </div>
       </div>
-
+            <BottomSection />
     </div>
   );
 }

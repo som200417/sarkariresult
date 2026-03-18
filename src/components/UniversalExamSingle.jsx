@@ -2,10 +2,13 @@ import { parseList } from "../utils/helpers";
 import { TwoColumnTable } from "./TwoColumnTable";
 import { SingleTable } from "./SingleTable";
 import VacancyTable from "./VacancyTable";
+import PhysicalTable from "./physicaltable";
 import ImportantLinksTable from "./ImportantLinksTable";
 import SimpleTable from "./SimpleTable";
 import FAQTable from "./FAQTable";
 import { formatText } from "@/utils/formatText";
+import LinkSimpleTable from "./LinkSimpleTable";
+import Image from "next/image";
 
 export default function UniversalExamSingle({ post }) {
   const acf = post?.acf ?? {};
@@ -14,16 +17,50 @@ export default function UniversalExamSingle({ post }) {
   const importantDates = parseList(acf.important_dates ?? "");
   const rightDetails = parseList(acf.right_column_details ?? "");
   const ageLimit = parseList(acf.age_limit ?? "");
-  const eligibility = parseList(acf.eligibility ?? "");
+ const rawEligibility = acf.eligibility ?? "";
+
+const isEligibilityTable = rawEligibility.includes("|");
+
+let eligibility = [];
+
+if (isEligibilityTable) {
+  // TABLE MODE
+  eligibility = rawEligibility
+    .split("\n")
+    .map(line => line.trim())
+    .filter(Boolean)
+    .map(line => [line, ""]); // important
+} else {
+  // OLD MODE
+  eligibility = parseList(rawEligibility);
+}
   const examPattern = parseList(acf.exam_pattern ?? "");
   const markingScheme = parseList(acf.marking_scheme ?? "");
 
-  const vacancyRows = parseList(acf.vacancy_details ?? "").map(
-    ([label, value]) => ({
-      post_name: label,
-      post_count: value,
-    })
-  );
+const rawVacancy = acf.vacancy_details ?? "";
+
+// 🔥 Detect table format
+const isTableFormat = rawVacancy.includes("|");
+
+let vacancyRows = [];
+
+if (isTableFormat) {
+  // MULTI COLUMN MODE
+  vacancyRows = rawVacancy
+    .split("\n")
+    .map(line => line.trim())
+    .filter(Boolean)
+    .map(line => ({
+      post_name: line, // पूरा row store
+      post_count: "",
+    }));
+} else {
+  // OLD FORMAT (NO CHANGE)
+  vacancyRows = parseList(rawVacancy).map(([label, value]) => ({
+    post_name: label,
+    post_count: value,
+  }));
+}
 
   const getTitle = (acfTitle, fallback) =>
     acfTitle?.trim() ? acfTitle : fallback;
@@ -80,6 +117,10 @@ export default function UniversalExamSingle({ post }) {
         />
       )}
 
+      {acf.physical_table && (
+  <PhysicalTable raw={acf.physical_table} />
+)}
+
       {/* ELIGIBILITY */}
       {eligibility.length > 0 && (
         <SimpleTable
@@ -111,6 +152,21 @@ export default function UniversalExamSingle({ post }) {
           content={acf.mode_of_selection}
         />
       )}
+      <LinkSimpleTable
+  title="FOLLOW US FOR UPDATES"
+  rows={[
+    {
+      label: "Join Our WhatsApp Channel",
+      url: "https://whatsapp.com/channel/0029VbCO5lUICVfkxi473f3g",
+      cta: "Follow Now",
+    },
+    {
+      label: "Join Our Telegram Channel",
+      url: "https://t.me/SarkariResult6Official",
+      cta: "Follow Now",
+    },
+  ]}
+/>
 
       {/* HOW TO */}
       {acf.how_to_steps && (
@@ -136,6 +192,19 @@ export default function UniversalExamSingle({ post }) {
 />
       )}
 
+  
+
+{acf.post_image?.url && (
+  <div className="my-6 flex justify-center">
+    <Image
+      src={acf.post_image.url}
+      alt={acf.post_image.alt || "image"}
+      width={1000}
+      height={400}
+      className="rounded border"
+    />
+  </div>
+)}
      
     </div>
   );

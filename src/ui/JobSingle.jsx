@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import UniversalExamSingle from "@/components/UniversalExamSingle";
-
+import BottomSection from "@/components/BottomSection";
 export default function JobSingle({ post }) {
   return (
     <div className="site-container my-6">
@@ -106,7 +106,7 @@ export default function JobSingle({ post }) {
           </Link>
         </div>
       </div>
-
+            <BottomSection />
     </div>
   );
 }

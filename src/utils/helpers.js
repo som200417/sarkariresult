@@ -36,12 +36,38 @@ export const parseLinkList = (text) => {
     })
     .filter(item => item.title && item.url);
 };
+
+// utils/helpers.js
+
+// Parse table (| separated)
+export const parseTable = (text = "") => {
+  const lines = text
+    .split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(Boolean);
+
+  if (lines.length < 2) {
+    return { columns: [], rows: [] };
+  }
+
+  const columns = lines[0].split("|").map(col => col.trim());
+
+  const rows = lines.slice(1).map(line =>
+    line.split("|").map(cell => cell.trim())
+  );
+
+  return { columns, rows };
+};
+
+
+// Parse sections (## heading)
 export const parseSections = (text = "") => {
   const sections = {};
   let current = null;
 
-  text.split("\n").forEach((line) => {
+  text.split(/\r?\n/).forEach(line => {
     const trimmed = line.trim();
+
     if (trimmed.startsWith("##")) {
       current = trimmed.replace("##", "").trim();
       sections[current] = [];
@@ -51,4 +77,15 @@ export const parseSections = (text = "") => {
   });
 
   return sections;
+};
+
+
+// Combine section + table
+export const parseSectionTables = (text = "") => {
+  const sections = parseSections(text);
+
+  return Object.entries(sections).map(([title, lines]) => ({
+    title,
+    ...parseTable(lines.join("\n")),
+  }));
 };
